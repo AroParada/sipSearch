@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import { Container } from "@mui/material";
@@ -7,6 +8,32 @@ import ListCard from "./components/ListCard";
 import RecipeCard from "./components/RecipeCard";
 
 function App() {
+  const [loadedRecipes, setLoadedRecipes] = useState([]);
+
+  useEffect(() => {
+    async function fetchRecipes() {
+      try {
+        const response = await fetch(
+          "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+        );
+        if (!response.ok) {
+          throw new Error("Network response not ok");
+        }
+        const resData = await response.json();
+
+        setLoadedRecipes(resData.drinks);
+      } catch (error) {
+        console.error("fetch error", error);
+      }
+    }
+
+    fetchRecipes();
+  }, []);
+
+  useEffect(() => {
+    console.log("loaded recipes", loadedRecipes);
+  }, [loadedRecipes]);
+
   return (
     <Container maxWidth="1">
       <NavBar />
@@ -18,7 +45,7 @@ function App() {
         </Grid>
         <Grid item container spacing={2}>
           <Grid item xs={12} md={6}>
-          <ListCard />
+            <ListCard />
           </Grid>
           <Grid item xs={12} md={6}>
             <RecipeCard />
