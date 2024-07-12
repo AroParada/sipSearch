@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeCard() {
+export default function RecipeCard(loadedRecipes) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -41,7 +41,7 @@ export default function RecipeCard() {
             R
           </Avatar>
         }
-        title="Shrimp and Chorizo Paella"
+        title={'asdfasdf'}
       />
       <CardMedia
         component="img"

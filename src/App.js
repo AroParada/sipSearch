@@ -6,6 +6,7 @@ import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import ListCard from "./components/ListCard";
 import RecipeCard from "./components/RecipeCard";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
@@ -45,7 +46,11 @@ function App() {
         </Grid>
         <Grid item container spacing={2}>
           <Grid item xs={12} md={6}>
-            <ListCard />
+            {loadedRecipes.length > 0 ? (
+              <ListCard loadedRecipes={loadedRecipes} />)
+              : (
+                <CircularProgress />
+              )}
           </Grid>
           <Grid item xs={12} md={6}>
             <RecipeCard />
