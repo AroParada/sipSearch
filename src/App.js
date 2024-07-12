@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import { Container } from "@mui/material";
@@ -10,6 +10,15 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
+  const drink = useRef();
+
+  function handleSearchDrink(event) {
+    event.preventDefault();
+
+    const enteredDrink = drink.current.value;
+
+    console.log(enteredDrink);
+  }
 
   useEffect(() => {
     async function fetchRecipes() {
@@ -41,16 +50,17 @@ function App() {
       <Grid container spacing={2} direction="column">
         <Grid item>
           <div style={{ padding: 20 }}>
-            <SearchBar />
+            <SearchBar ref={drink} />
+            <button onClick={handleSearchDrink}>BUTTON</button>
           </div>
         </Grid>
         <Grid item container spacing={2}>
           <Grid item xs={12} md={6}>
             {loadedRecipes.length > 0 ? (
-              <ListCard loadedRecipes={loadedRecipes} />)
-              : (
-                <CircularProgress />
-              )}
+              <ListCard loadedRecipes={loadedRecipes} />
+            ) : (
+              <CircularProgress />
+            )}
           </Grid>
           <Grid item xs={12} md={6}>
             <RecipeCard />
