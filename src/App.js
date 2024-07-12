@@ -10,21 +10,23 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
-  const drink = useRef();
+  const [searchDrink, setSearchDrink] = useState('margarita');
+
+  const drinkRef = useRef();
 
   function handleSearchDrink(event) {
     event.preventDefault();
 
-    const enteredDrink = drink.current.value;
-
-    console.log(enteredDrink);
+    const enteredDrink = drinkRef.current.value;
+    setSearchDrink(enteredDrink)
+    console.log('entered drink', enteredDrink);
   }
 
   useEffect(() => {
     async function fetchRecipes() {
       try {
         const response = await fetch(
-          "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+          `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchDrink}`
         );
         if (!response.ok) {
           throw new Error("Network response not ok");
@@ -38,7 +40,7 @@ function App() {
     }
 
     fetchRecipes();
-  }, []);
+  }, [searchDrink]);
 
   useEffect(() => {
     console.log("loaded recipes", loadedRecipes);
@@ -50,13 +52,13 @@ function App() {
       <Grid container spacing={2} direction="column">
         <Grid item>
           <div style={{ padding: 20 }}>
-            <SearchBar ref={drink} />
+            <SearchBar ref={drinkRef} />
             <button onClick={handleSearchDrink}>BUTTON</button>
           </div>
         </Grid>
         <Grid item container spacing={2}>
           <Grid item xs={12} md={6}>
-            {loadedRecipes.length > 0 ? (
+            {loadedRecipes.length > 0 || null ? (
               <ListCard loadedRecipes={loadedRecipes} />
             ) : (
               <CircularProgress />
