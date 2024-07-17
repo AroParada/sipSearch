@@ -1,16 +1,19 @@
 import "./App.css";
 import { useEffect, useState, useRef } from "react";
-import NavBar from "./components/NavBar";
-import SearchBar from "./components/SearchBar";
 import { Container } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import ListCard from "./components/ListCard";
+import NavBar from "./components/NavBar";
+import SearchBar from "./components/SearchBar";
 import RecipeCard from "./components/RecipeCard";
-import CircularProgress from "@mui/material/CircularProgress";
+// import { click } from "@testing-library/user-event/dist/click";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
   const [searchDrink, setSearchDrink] = useState('margarita');
+  const [clickedDrink, setClickedDrink] = useState([{}])
+
 
   const drinkRef = useRef();
 
@@ -19,7 +22,6 @@ function App() {
 
     const enteredDrink = drinkRef.current.value;
     setSearchDrink(enteredDrink)
-    console.log('entered drink', enteredDrink);
   }
 
   useEffect(() => {
@@ -46,6 +48,13 @@ function App() {
     console.log("loaded recipes", loadedRecipes);
   }, [loadedRecipes]);
 
+  function handleClickedDrink(id) {
+    const foundDrink = loadedRecipes.find((recipe) => recipe.idDrink === id )
+    // console.log('foundDrink: ', foundDrink);
+    setClickedDrink(foundDrink);
+    console.log('clicked drink', clickedDrink);
+  }
+
   return (
     <Container maxWidth="1">
       <NavBar />
@@ -59,7 +68,10 @@ function App() {
         <Grid item container spacing={2}>
           <Grid item xs={12} md={6}>
             {loadedRecipes.length > 0 || null ? (
-              <ListCard loadedRecipes={loadedRecipes} />
+              <ListCard
+                onClick={handleClickedDrink}
+                loadedRecipes={loadedRecipes}
+              />
             ) : (
               <CircularProgress />
             )}

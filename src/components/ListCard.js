@@ -6,12 +6,12 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import { ListItemButton } from "@mui/material";
 
-export default function ListCard({ loadedRecipes }) {
+export default function ListCard({ loadedRecipes, onClick }) {
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       {loadedRecipes.map((recipe) => (
         <li key={recipe.idDrink}>
-          <ListItemButton alignItems="flex-start">
+          <ListItemButton onClick={() => onClick(recipe.idDrink)} alignItems="flex-start">
             <ListItemAvatar>
               <Avatar src={recipe.strDrinkThumb} />
             </ListItemAvatar>
