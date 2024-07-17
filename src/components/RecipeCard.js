@@ -12,8 +12,13 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -26,7 +31,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeCard(loadedRecipes) {
+export default function RecipeCard({ clickedDrink }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -41,20 +46,83 @@ export default function RecipeCard(loadedRecipes) {
             R
           </Avatar>
         }
-        title={'asdfasdf'}
+        title={clickedDrink.strDrink}
       />
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
+        src={clickedDrink.strDrinkThumb}
+        alt="Drink"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 100 }} size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Ingredient </TableCell>
+                <TableCell align="right">Measurement</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {clickedDrink.strIngredient1}
+                </TableCell>
+                <TableCell align="right">{clickedDrink.strMeasure1}</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {clickedDrink.strIngredient2}
+                </TableCell>
+                <TableCell align="right">{clickedDrink.strMeasure2}</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {clickedDrink.strIngredient3}
+                </TableCell>
+                <TableCell align="right">{clickedDrink.strMeasure3}</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {clickedDrink.strIngredient4}
+                </TableCell>
+                <TableCell align="right">{clickedDrink.strMeasure4}</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {clickedDrink.strIngredient5}
+                </TableCell>
+                <TableCell align="right">{clickedDrink.strMeasure5}</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {clickedDrink.strIngredient6}
+                </TableCell>
+                <TableCell align="right">{clickedDrink.strMeasure6}</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {clickedDrink.strIngredient7}
+                </TableCell>
+                <TableCell align="right">{clickedDrink.strMeasure7}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -72,9 +140,8 @@ export default function RecipeCard(loadedRecipes) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
+          <Typography variant="body2" color="text.secondary">
+            {clickedDrink.strInstructions}
           </Typography>
         </CardContent>
       </Collapse>

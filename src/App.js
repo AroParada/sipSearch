@@ -53,6 +53,7 @@ function App() {
     // console.log('foundDrink: ', foundDrink);
     setClickedDrink(foundDrink);
     console.log('clicked drink', clickedDrink);
+    console.log(clickedDrink.strDrink);
   }
 
   return (
@@ -77,7 +78,7 @@ function App() {
             )}
           </Grid>
           <Grid item xs={12} md={6}>
-            <RecipeCard />
+            <RecipeCard clickedDrink={clickedDrink} />
           </Grid>
         </Grid>
       </Grid>
