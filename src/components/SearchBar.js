@@ -5,7 +5,7 @@ const SearchBar = forwardRef((props, ref) => {
     return (
       <TextField
         id="outlined-basic fullWidth"
-        label="Outlined"
+        label="Enter drink"
         variant="outlined"
         fullWidth
         inputRef={ref}

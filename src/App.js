@@ -8,6 +8,8 @@ import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import RecipeCard from "./components/RecipeCard";
 // import { click } from "@testing-library/user-event/dist/click";
+import Button from "@mui/material/Button";
+import SearchIcon from "@mui/icons-material/Search";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
@@ -63,7 +65,13 @@ function App() {
         <Grid item>
           <div style={{ padding: 20 }}>
             <SearchBar ref={drinkRef} />
-            <button onClick={handleSearchDrink}>BUTTON</button>
+            <Button
+              onClick={handleSearchDrink}
+              variant="contained"
+              endIcon={<SearchIcon />}
+            >
+              Search
+            </Button>
           </div>
         </Grid>
         <Grid item container spacing={2}>

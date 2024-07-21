@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Popover } from "@mui/material";
 import AddRecipeForm from "./AddRecipeForm";
+import LiquorIcon from "@mui/icons-material/Liquor";
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,16 +23,13 @@ export default function NavBar() {
   return (
     <AppBar position="static">
       <Toolbar>
+        <LiquorIcon fontSize="large" />
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
           Sip Search
         </Typography>
         <AddRecipeForm />
         <div>
-          <Button
-            aria-describedby={id}
-            variant="h5"
-            onClick={handleClick}
-          >
+          <Button aria-describedby={id} variant="h5" onClick={handleClick}>
             Bookmarks
           </Button>
           <Popover
