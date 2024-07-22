@@ -7,7 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -19,6 +19,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import { Box } from "@mui/material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -56,6 +61,35 @@ export default function RecipeCard({ clickedDrink }) {
       />
       <CardContent>
         <TableContainer component={Paper}>
+          <Box display="flex" alignitems="center">
+            <PeopleAltIcon fontSize="large" />
+            <Typography style={{ margin: "8px 10px" }}>Servings</Typography>
+            <Fab
+              size="small"
+              color="primary"
+              aria-label="remove"
+              sx={{
+                marginRight: 1,
+                width: 33,
+                height: 33,
+                minHeight: "unset",
+              }}
+            >
+              <RemoveIcon />
+            </Fab>
+            <Fab
+              size="small"
+              color="primary"
+              aria-label="add"
+              sx={{
+                width: 33,
+                height: 33,
+                minHeight: "unset",
+              }}
+            >
+              <AddIcon />
+            </Fab>
+          </Box>
           <Table sx={{ minWidth: 100 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
