@@ -26,6 +26,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 
+// Drop down menu
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -37,9 +38,50 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+const IngredientRow = ({ ingredient, measurement }) => (
+  // Put in another file ? 
+  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+    <TableCell component="th" scope="row">
+      {ingredient}
+    </TableCell>
+    <TableCell align="right">{measurement}</TableCell>
+  </TableRow>
+);
+
 export default function RecipeCard({ clickedDrink }) {
   const [expanded, setExpanded] = React.useState(false);
-  const [serving, setServing] = React.useState(1)
+  const [serving, setServing] = React.useState(1);
+  // Clean later
+ const ingredients = [
+   {
+     ingredient: clickedDrink.strIngredient1,
+     measurement: clickedDrink.strMeasure1,
+   },
+   {
+     ingredient: clickedDrink.strIngredient2,
+     measurement: clickedDrink.strMeasure2,
+   },
+   {
+     ingredient: clickedDrink.strIngredient3,
+     measurement: clickedDrink.strMeasure3,
+   },
+   {
+     ingredient: clickedDrink.strIngredient4,
+     measurement: clickedDrink.strMeasure4,
+   },
+   {
+     ingredient: clickedDrink.strIngredient5,
+     measurement: clickedDrink.strMeasure5,
+   },
+   {
+     ingredient: clickedDrink.strIngredient6,
+     measurement: clickedDrink.strMeasure6,
+   },
+   {
+     ingredient: clickedDrink.strIngredient7,
+     measurement: clickedDrink.strMeasure7,
+   },
+ ];
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -77,7 +119,10 @@ export default function RecipeCard({ clickedDrink }) {
         <TableContainer component={Paper}>
           <Box display="flex" alignitems="center">
             <PeopleAltIcon fontSize="large" />
-            <Typography style={{ margin: "8px 10px" }}> {serving} serving</Typography>
+            <Typography style={{ margin: "8px 10px" }}>
+              {" "}
+              {serving} serving
+            </Typography>
             <Fab
               size="small"
               color="primary"
@@ -114,69 +159,20 @@ export default function RecipeCard({ clickedDrink }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {clickedDrink.strIngredient1}
-                </TableCell>
-                <TableCell align="right">{clickedDrink.strMeasure1}</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {clickedDrink.strIngredient2}
-                </TableCell>
-                <TableCell align="right">{clickedDrink.strMeasure2}</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {clickedDrink.strIngredient3}
-                </TableCell>
-                <TableCell align="right">{clickedDrink.strMeasure3}</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {clickedDrink.strIngredient4}
-                </TableCell>
-                <TableCell align="right">{clickedDrink.strMeasure4}</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {clickedDrink.strIngredient5}
-                </TableCell>
-                <TableCell align="right">{clickedDrink.strMeasure5}</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {clickedDrink.strIngredient6}
-                </TableCell>
-                <TableCell align="right">{clickedDrink.strMeasure6}</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {clickedDrink.strIngredient7}
-                </TableCell>
-                <TableCell align="right">{clickedDrink.strMeasure7}</TableCell>
-              </TableRow>
+              {ingredients.map((item, index) => (
+                <IngredientRow
+                  key={index}
+                  ingredient={item.ingredient}
+                  measurement={item.measurement}
+                />
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteIcon sx={{ color: "red!important" }} />
         </IconButton>
         <ExpandMore
           expand={expanded}
