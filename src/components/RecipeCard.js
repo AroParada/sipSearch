@@ -1,29 +1,30 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import { styled, Box } from "@mui/material";
 import { red } from "@mui/material/colors";
+import {
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Collapse,
+  Avatar,
+  IconButton,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Fab,
+} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import { Box } from "@mui/material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,10 +39,23 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeCard({ clickedDrink }) {
   const [expanded, setExpanded] = React.useState(false);
+  const [serving, setServing] = React.useState(1)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const handleAddClick = () => {
+    setServing(serving + 1)
+    const newClickedDrink = { ...clickedDrink };
+    //iNCREMENT SERVING +1
+    // IF VALUE DOESNT CONTAIN '/' THEN MULTIPLY NUMBER BY SERVING
+    // ELSE CALL FUNCTION THAT WOULD MULTIPLY THE FRACTION BY SERVINGS
+  }
+
+  const handleRemoveClick = () => {
+    setServing(serving - 1)
+  }
 
   return (
     <Card sx={{ maxWidth: 500 }}>
@@ -63,11 +77,12 @@ export default function RecipeCard({ clickedDrink }) {
         <TableContainer component={Paper}>
           <Box display="flex" alignitems="center">
             <PeopleAltIcon fontSize="large" />
-            <Typography style={{ margin: "8px 10px" }}>Servings</Typography>
+            <Typography style={{ margin: "8px 10px" }}> {serving} serving</Typography>
             <Fab
               size="small"
               color="primary"
               aria-label="remove"
+              onClick={handleRemoveClick}
               sx={{
                 marginRight: 1,
                 width: 33,
@@ -81,6 +96,7 @@ export default function RecipeCard({ clickedDrink }) {
               size="small"
               color="primary"
               aria-label="add"
+              onClick={handleAddClick}
               sx={{
                 width: 33,
                 height: 33,

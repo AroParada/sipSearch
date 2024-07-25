@@ -7,15 +7,13 @@ import ListCard from "./components/ListCard";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import RecipeCard from "./components/RecipeCard";
-// import { click } from "@testing-library/user-event/dist/click";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
-  const [searchDrink, setSearchDrink] = useState('margarita');
-  const [clickedDrink, setClickedDrink] = useState([{}])
-
+  const [searchDrink, setSearchDrink] = useState("margarita");
+  const [clickedDrink, setClickedDrink] = useState([{}]);
 
   const drinkRef = useRef();
 
@@ -23,7 +21,7 @@ function App() {
     event.preventDefault();
 
     const enteredDrink = drinkRef.current.value;
-    setSearchDrink(enteredDrink)
+    setSearchDrink(enteredDrink);
   }
 
   useEffect(() => {
@@ -47,15 +45,47 @@ function App() {
   }, [searchDrink]);
 
   useEffect(() => {
-    console.log("loaded recipes", loadedRecipes);
+    // console.log("loaded recipes", loadedRecipes);
   }, [loadedRecipes]);
 
+  // Removes objects with empty or null values
+  function getNonEmptyProperties(obj) {
+    // Retrieves all keys from the object.
+    return (
+      Object.keys(obj)
+        // Filters out keys where the value is null, undefined, or an empty string
+        .filter(
+          (key) =>
+            obj[key] !== null && obj[key] !== undefined && obj[key] !== ""
+        )
+        //Constructs a new object with only the keys that passed the filter.
+        .reduce((result, key) => {
+          result[key] = obj[key];
+          return result;
+          //}, {}) is the part of the syntax that initializes the accumulator and completes the function.
+        }, {})
+    );
+  }
+
+  // function for single click drink
   function handleClickedDrink(id) {
-    const foundDrink = loadedRecipes.find((recipe) => recipe.idDrink === id )
-    // console.log('foundDrink: ', foundDrink);
-    setClickedDrink(foundDrink);
+    // Understand this
+    const foundDrink = loadedRecipes.find((recipe) => recipe.idDrink === id);
+
+    if(foundDrink){
+      const nonEmptyDrinkArray = getNonEmptyProperties(foundDrink);
+      // make keys that start with strMeasure values numbers
+      //IN PROGRESS ---------------------------
+      Object.keys(nonEmptyDrinkArray).forEach(key => {
+        if(key.startsWith('strMeasure')) {
+          nonEmptyDrinkArray[key] = (nonEmptyDrinkArray[key])
+        }
+      });
+      // -----------------------------------
+      // console.log("Modified properties:", nonEmptyDrinkArray);
+      setClickedDrink(nonEmptyDrinkArray);
+    }
     console.log('clicked drink', clickedDrink);
-    console.log(clickedDrink.strDrink);
   }
 
   return (
