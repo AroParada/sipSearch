@@ -24,6 +24,13 @@ function App() {
     setSearchDrink(enteredDrink);
   }
 
+  function handleSearchFavDrink(e, name) {
+    e.preventDefault();
+
+    setSearchDrink(name)
+    handleClickedDrink(searchDrink)
+  }
+
   useEffect(() => {
     async function fetchRecipes() {
       try {
@@ -68,19 +75,19 @@ function App() {
   }
 
   // function for single click drink
-  function handleClickedDrink(id) {
+  function handleClickedDrink(name) {
     // Understand this
-    const foundDrink = loadedRecipes.find((recipe) => recipe.idDrink === id);
+    const foundDrink = loadedRecipes.find((recipe) => recipe.strDrink === name);
 
     if(foundDrink){
       const nonEmptyDrinkArray = getNonEmptyProperties(foundDrink);
       // make keys that start with strMeasure values numbers
       //IN PROGRESS ---------------------------
-      Object.keys(nonEmptyDrinkArray).forEach(key => {
-        if(key.startsWith('strMeasure')) {
-          nonEmptyDrinkArray[key] = (nonEmptyDrinkArray[key])
-        }
-      });
+      // Object.keys(nonEmptyDrinkArray).forEach(key => {
+      //   if(key.startsWith('strMeasure')) {
+      //     nonEmptyDrinkArray[key] = (nonEmptyDrinkArray[key])
+      //   }
+      // });
       // console.log("Modified properties:", nonEmptyDrinkArray);
       setClickedDrink(nonEmptyDrinkArray);
     }
@@ -89,7 +96,7 @@ function App() {
 
   return (
     <Container maxWidth="1">
-      <NavBar />
+      <NavBar onClick={handleSearchFavDrink} />
       <Grid container spacing={2} direction="column">
         <Grid item>
           <div style={{ padding: 20 }}>

@@ -11,7 +11,7 @@ export default function ListCard({ loadedRecipes, onClick }) {
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       {loadedRecipes.map((recipe) => (
         <li key={recipe.idDrink}>
-          <ListItemButton onClick={() => onClick(recipe.idDrink)} alignItems="flex-start">
+          <ListItemButton onClick={() => onClick(recipe.strDrink)} alignItems="flex-start">
             <ListItemAvatar>
               <Avatar src={recipe.strDrinkThumb} />
             </ListItemAvatar>

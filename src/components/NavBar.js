@@ -14,7 +14,7 @@ import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 
 
-export default function NavBar() {
+export default function NavBar({onClick}) {
   const { favorites } = useContext(FavoritesContext)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -60,7 +60,7 @@ export default function NavBar() {
               {favorites.map((favorite) => (
                 <li key={favorite}>
                   <ListItemButton
-                    // onClick={() => onClick(recipe.idDrink)}
+                    onClick={(e) => onClick(e, favorite)}
                     alignItems="flex-start"
                   >
                     <ListItemText primary={favorite} />
