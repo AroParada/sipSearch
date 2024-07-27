@@ -16,14 +16,14 @@ function App() {
   const [clickedDrink, setClickedDrink] = useState([{}]);
 
   const drinkRef = useRef();
-
+  // SearchBar search function
   function handleSearchDrink(event) {
     event.preventDefault();
 
     const enteredDrink = drinkRef.current.value;
     setSearchDrink(enteredDrink);
   }
-
+  // favorites search function for rendering drinks
   function handleSearchFavDrink(e, name) {
     e.preventDefault();
 
