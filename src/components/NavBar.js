@@ -6,8 +6,16 @@ import Button from "@mui/material/Button";
 import { Popover } from "@mui/material";
 import AddRecipeForm from "./AddRecipeForm";
 import LiquorIcon from "@mui/icons-material/Liquor";
+import { FavoritesContext } from "../store/favorites";
+import { useContext } from "react";
+import { ListItemButton } from "@mui/material";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
+
 
 export default function NavBar() {
+  const { favorites } = useContext(FavoritesContext)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -46,7 +54,21 @@ export default function NavBar() {
               horizontal: "right",
             }}
           >
-            <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+            <List
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            >
+              {favorites.map((favorite) => (
+                <li key={favorite}>
+                  <ListItemButton
+                    // onClick={() => onClick(recipe.idDrink)}
+                    alignItems="flex-start"
+                  >
+                    <ListItemText primary={favorite} />
+                  </ListItemButton>
+                  <Divider variant="inset" component="li" />
+                </li>
+              ))}
+            </List>
           </Popover>
         </div>
       </Toolbar>

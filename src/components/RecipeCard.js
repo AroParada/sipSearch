@@ -25,6 +25,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import { useContext } from "react";
+import { FavoritesContext } from "../store/favorites";
 
 // Drop down menu
 const ExpandMore = styled((props) => {
@@ -39,7 +41,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const IngredientRow = ({ ingredient, measurement }) => (
-  // Put in another file ? 
+  // Put in another file ?
   <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
     <TableCell component="th" scope="row">
       {ingredient}
@@ -51,53 +53,56 @@ const IngredientRow = ({ ingredient, measurement }) => (
 export default function RecipeCard({ clickedDrink }) {
   const [expanded, setExpanded] = React.useState(false);
   const [serving, setServing] = React.useState(1);
+  const { favorites, toggleFavorite } = useContext(FavoritesContext);
+  const isFavorite = favorites.includes(clickedDrink.strDrink)
+  
   // Clean later
- const ingredients = [
-   {
-     ingredient: clickedDrink.strIngredient1,
-     measurement: clickedDrink.strMeasure1,
-   },
-   {
-     ingredient: clickedDrink.strIngredient2,
-     measurement: clickedDrink.strMeasure2,
-   },
-   {
-     ingredient: clickedDrink.strIngredient3,
-     measurement: clickedDrink.strMeasure3,
-   },
-   {
-     ingredient: clickedDrink.strIngredient4,
-     measurement: clickedDrink.strMeasure4,
-   },
-   {
-     ingredient: clickedDrink.strIngredient5,
-     measurement: clickedDrink.strMeasure5,
-   },
-   {
-     ingredient: clickedDrink.strIngredient6,
-     measurement: clickedDrink.strMeasure6,
-   },
-   {
-     ingredient: clickedDrink.strIngredient7,
-     measurement: clickedDrink.strMeasure7,
-   },
- ];
+  const ingredients = [
+    {
+      ingredient: clickedDrink.strIngredient1,
+      measurement: clickedDrink.strMeasure1,
+    },
+    {
+      ingredient: clickedDrink.strIngredient2,
+      measurement: clickedDrink.strMeasure2,
+    },
+    {
+      ingredient: clickedDrink.strIngredient3,
+      measurement: clickedDrink.strMeasure3,
+    },
+    {
+      ingredient: clickedDrink.strIngredient4,
+      measurement: clickedDrink.strMeasure4,
+    },
+    {
+      ingredient: clickedDrink.strIngredient5,
+      measurement: clickedDrink.strMeasure5,
+    },
+    {
+      ingredient: clickedDrink.strIngredient6,
+      measurement: clickedDrink.strMeasure6,
+    },
+    {
+      ingredient: clickedDrink.strIngredient7,
+      measurement: clickedDrink.strMeasure7,
+    },
+  ];
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const handleAddClick = () => {
-    setServing(serving + 1)
+    setServing(serving + 1);
     const newClickedDrink = { ...clickedDrink };
     //iNCREMENT SERVING +1
     // IF VALUE DOESNT CONTAIN '/' THEN MULTIPLY NUMBER BY SERVING
     // ELSE CALL FUNCTION THAT WOULD MULTIPLY THE FRACTION BY SERVINGS
-  }
+  };
 
   const handleRemoveClick = () => {
-    setServing(serving - 1)
-  }
+    setServing(serving - 1);
+  };
 
   return (
     <Card sx={{ maxWidth: 500 }}>
@@ -171,8 +176,11 @@ export default function RecipeCard({ clickedDrink }) {
         </TableContainer>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon sx={{ color: "red!important" }} />
+        <IconButton
+          aria-label="add to favorites"
+          onClick={() => toggleFavorite(clickedDrink.strDrink)}
+        >
+          <FavoriteIcon color={isFavorite ? "error" : "action"} />
         </IconButton>
         <ExpandMore
           expand={expanded}

@@ -81,7 +81,6 @@ function App() {
           nonEmptyDrinkArray[key] = (nonEmptyDrinkArray[key])
         }
       });
-      // -----------------------------------
       // console.log("Modified properties:", nonEmptyDrinkArray);
       setClickedDrink(nonEmptyDrinkArray);
     }
