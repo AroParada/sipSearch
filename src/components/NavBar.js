@@ -29,7 +29,12 @@ export default function NavBar({onClick}) {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
   return (
-    <AppBar position="static">
+    <AppBar
+      style={{
+        background: "linear-gradient(#000 0, #031621 64.2%, #06273a 100%)",
+      }}
+      position="static"
+    >
       <Toolbar>
         <LiquorIcon fontSize="large" />
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>

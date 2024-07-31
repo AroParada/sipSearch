@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+html {
+  background-color: rgb(218, 218, 218);
+}
+
+.css-o69gx8-MuiCardMedia-root {
+    object-fit: contain !important;
+}

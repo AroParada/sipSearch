@@ -105,7 +105,7 @@ export default function RecipeCard({ clickedDrink }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 500 }}>
+    <Paper elevation={5} >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -199,6 +199,6 @@ export default function RecipeCard({ clickedDrink }) {
           </Typography>
         </CardContent>
       </Collapse>
-    </Card>
+    </Paper>
   );
 }

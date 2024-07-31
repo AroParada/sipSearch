@@ -97,9 +97,9 @@ function App() {
   return (
     <Container maxWidth="1">
       <NavBar onClick={handleSearchFavDrink} />
-      <Grid container spacing={2} direction="column">
+      <Grid container spacing={1} direction="column">
         <Grid item>
-          <div style={{ padding: 20 }}>
+          <div style={{ padding: 10 }}>
             <SearchBar ref={drinkRef} />
             <Button
               onClick={handleSearchDrink}
@@ -111,7 +111,7 @@ function App() {
           </div>
         </Grid>
         <Grid item container spacing={2}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} style={{ paddingLeft: 10 }}>
             {loadedRecipes.length > 0 || null ? (
               <ListCard
                 onClick={handleClickedDrink}
@@ -121,7 +121,7 @@ function App() {
               <CircularProgress />
             )}
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} style={{ paddingRight: 10 }}>
             <RecipeCard clickedDrink={clickedDrink} />
           </Grid>
         </Grid>
