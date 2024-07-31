@@ -6,10 +6,18 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import {useRef} from 'react';
+import {useRef, useState, useEffect} from 'react';
 
 export default function AddRecipeForm() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [added, setAdded] = useState([]);
+
+  useEffect(() => {
+    const storedAdded = JSON.parse(localStorage.getItem('added')) || [];
+    setAdded(storedAdded);
+  }, []);
+
+
   
     const drinkNameRef  = useRef();
     const imgUrlRef = useRef();
@@ -41,6 +49,12 @@ export default function AddRecipeForm() {
       strIngredient8: ing8Ref.current.value,
     };
     console.log(formValues, 'FORM VALUES');
+    setAdded(prevAdded => {
+      const updatedAdded = [...prevAdded, formValues];
+    localStorage.setItem('added', JSON.stringify(updatedAdded))
+    return updatedAdded;
+    })
+    console.log(added, 'ADDED');
     handleClose()
   }
 
