@@ -6,35 +6,32 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import {useRef, useState, useEffect} from 'react';
+import { useRef, useState, useEffect } from "react";
 
 export default function AddRecipeForm() {
   const [open, setOpen] = useState(false);
   const [added, setAdded] = useState([]);
 
   useEffect(() => {
-    const storedAdded = JSON.parse(localStorage.getItem('added')) || [];
+    const storedAdded = JSON.parse(localStorage.getItem("added")) || [];
     setAdded(storedAdded);
   }, []);
 
+  const drinkNameRef = useRef();
+  const imgUrlRef = useRef();
+  const servingsRef = useRef();
+  const ing1Ref = useRef();
+  const ing2Ref = useRef();
+  const ing3Ref = useRef();
+  const ing4Ref = useRef();
+  const ing5Ref = useRef();
+  const ing6Ref = useRef();
+  const ing7Ref = useRef();
+  const ing8Ref = useRef();
 
-  
-    const drinkNameRef  = useRef();
-    const imgUrlRef = useRef();
-    const servingsRef = useRef();
-    const ing1Ref = useRef();
-    const ing2Ref = useRef();
-    const ing3Ref = useRef();
-    const ing4Ref = useRef();
-    const ing5Ref = useRef();
-    const ing6Ref = useRef();
-    const ing7Ref = useRef();
-    const ing8Ref = useRef();
-  
-  
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const formValues = {
       strDrink: drinkNameRef.current.value,
       strDrinkThumb: imgUrlRef.current.value,
@@ -48,15 +45,14 @@ export default function AddRecipeForm() {
       strIngredient7: ing7Ref.current.value,
       strIngredient8: ing8Ref.current.value,
     };
-    console.log(formValues, 'FORM VALUES');
-    setAdded(prevAdded => {
+    setAdded((prevAdded) => {
       const updatedAdded = [...prevAdded, formValues];
-    localStorage.setItem('added', JSON.stringify(updatedAdded))
-    return updatedAdded;
-    })
-    console.log(added, 'ADDED');
-    handleClose()
-  }
+      localStorage.setItem("added", JSON.stringify(updatedAdded));
+      return updatedAdded;
+    });
+    console.log(added, "ADDED");
+    handleClose();
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -71,14 +67,10 @@ export default function AddRecipeForm() {
       <Button color="inherit" onClick={handleClickOpen}>
         Add Recipe
       </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        >
+      <Dialog open={open} onClose={handleClose}>
         <form onSubmit={handleSubmit}>
           <DialogTitle>Recipe Data</DialogTitle>
           <DialogContent>
-            <DialogContentText></DialogContentText>
             <TextField
               autoFocus
               required

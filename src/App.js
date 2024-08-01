@@ -27,10 +27,9 @@ function App() {
   function handleSearchFavDrink(e, name) {
     e.preventDefault();
 
-    setSearchDrink(name)
-    handleClickedDrink(searchDrink)
+    setSearchDrink(name);
+    handleClickedDrink(searchDrink);
   }
-
   useEffect(() => {
     async function fetchRecipes() {
       try {
@@ -38,11 +37,28 @@ function App() {
           `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchDrink}`
         );
         if (!response.ok) {
-          throw new Error("Network response not ok");
+          // throw new Error("Network response not ok");
+          console.log("Response not ok");
         }
+        const added = JSON.parse(localStorage.getItem("added")) || [];
+
+        const foundInLocalStorage = added.find(
+          (drink) => drink.strDrink.toLowerCase() === searchDrink.toLowerCase()
+        );
+
         const resData = await response.json();
 
-        setLoadedRecipes(resData.drinks);
+        // set loaded recipes from the API response
+        // HANDLE IF only FOUND IN LOCAL
+        setLoadedRecipes(
+          foundInLocalStorage
+            ? resData.drinks && resData.drinks.length > 0
+              ? [foundInLocalStorage, ...resData.drinks]
+              : [foundInLocalStorage]
+            : resData.drinks
+        );
+
+        console.log(loadedRecipes);
       } catch (error) {
         console.error("fetch error", error);
       }
@@ -79,7 +95,7 @@ function App() {
     // Understand this
     const foundDrink = loadedRecipes.find((recipe) => recipe.strDrink === name);
 
-    if(foundDrink){
+    if (foundDrink) {
       const nonEmptyDrinkArray = getNonEmptyProperties(foundDrink);
       // make keys that start with strMeasure values numbers
       //IN PROGRESS ---------------------------
@@ -91,7 +107,7 @@ function App() {
       // console.log("Modified properties:", nonEmptyDrinkArray);
       setClickedDrink(nonEmptyDrinkArray);
     }
-    console.log('clicked drink', clickedDrink);
+    console.log("clicked drink", clickedDrink);
   }
 
   return (
