@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sipSearch/static/css/main.b2d269b1.css",
+    "main.js": "/sipSearch/static/js/main.3a529488.js",
+    "static/js/453.d1928c6a.chunk.js": "/sipSearch/static/js/453.d1928c6a.chunk.js",
+    "index.html": "/sipSearch/index.html",
+    "main.b2d269b1.css.map": "/sipSearch/static/css/main.b2d269b1.css.map",
+    "main.3a529488.js.map": "/sipSearch/static/js/main.3a529488.js.map",
+    "453.d1928c6a.chunk.js.map": "/sipSearch/static/js/453.d1928c6a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b2d269b1.css",
+    "static/js/main.3a529488.js"
+  ]
+}
