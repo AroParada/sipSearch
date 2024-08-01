@@ -48,8 +48,7 @@ function App() {
 
         const resData = await response.json();
 
-        // set loaded recipes from the API response
-        // HANDLE IF only FOUND IN LOCAL
+        // set loaded recipes from the API response || local storage
         setLoadedRecipes(
           foundInLocalStorage
             ? resData.drinks && resData.drinks.length > 0

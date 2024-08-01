@@ -20,6 +20,7 @@ export default function AddRecipeForm() {
   const drinkNameRef = useRef();
   const imgUrlRef = useRef();
   const servingsRef = useRef();
+  const instructionsRef = useRef();
   const ing1Ref = useRef();
   const ing2Ref = useRef();
   const ing3Ref = useRef();
@@ -36,6 +37,7 @@ export default function AddRecipeForm() {
       strDrink: drinkNameRef.current.value,
       strDrinkThumb: imgUrlRef.current.value,
       servings: servingsRef.current.value,
+      strInstructions: instructionsRef.current.value,
       strIngredient1: ing1Ref.current.value,
       strIngredient2: ing2Ref.current.value,
       strIngredient3: ing3Ref.current.value,
@@ -83,7 +85,6 @@ export default function AddRecipeForm() {
               inputRef={drinkNameRef}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="email"
@@ -93,7 +94,6 @@ export default function AddRecipeForm() {
               inputRef={imgUrlRef}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="email"
@@ -102,11 +102,19 @@ export default function AddRecipeForm() {
               variant="standard"
               inputRef={servingsRef}
             />
+            <TextField
+              margin="dense"
+              id="name"
+              name="email"
+              label="Instructions"
+              fullWidth
+              variant="standard"
+              inputRef={instructionsRef}
+            />
           </DialogContent>
           <DialogTitle>Ingredients</DialogTitle>
           <DialogContent>
             <TextField
-              autoFocus
               required
               margin="dense"
               id="name"
@@ -117,7 +125,6 @@ export default function AddRecipeForm() {
               inputRef={ing1Ref}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="email"
@@ -127,7 +134,6 @@ export default function AddRecipeForm() {
               inputRef={ing2Ref}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="email"
@@ -137,7 +143,6 @@ export default function AddRecipeForm() {
               inputRef={ing3Ref}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="email"
@@ -147,7 +152,6 @@ export default function AddRecipeForm() {
               inputRef={ing4Ref}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="email"
@@ -157,7 +161,6 @@ export default function AddRecipeForm() {
               inputRef={ing5Ref}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="emainputRl"
@@ -167,7 +170,6 @@ export default function AddRecipeForm() {
               inputRef={ing6Ref}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="email"
@@ -177,7 +179,6 @@ export default function AddRecipeForm() {
               inputRef={ing7Ref}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               name="email"
