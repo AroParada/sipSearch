@@ -126,7 +126,7 @@ function App() {
           </div>
         </Grid>
         <Grid item container spacing={2}>
-          <Grid item xs={12} md={6} style={{ paddingLeft: 10 }}>
+          <Grid item xs={12} md={6} >
             {loadedRecipes.length > 0 || null ? (
               <ListCard
                 onClick={handleClickedDrink}
@@ -136,7 +136,7 @@ function App() {
               <CircularProgress />
             )}
           </Grid>
-          <Grid item xs={12} md={6} style={{ paddingRight: 10 }}>
+          <Grid item xs={12} md={6} >
             <RecipeCard clickedDrink={clickedDrink} />
           </Grid>
         </Grid>

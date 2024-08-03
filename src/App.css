@@ -41,6 +41,6 @@ html {
   background-color: rgb(218, 218, 218);
 }
 
-.css-o69gx8-MuiCardMedia-root {
-    object-fit: contain !important;
-}
+/* .css-1mzd3ma-MuiCardMedia-root {
+    background-size: contain !important;
+} */

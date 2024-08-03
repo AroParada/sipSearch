@@ -105,22 +105,33 @@ export default function RecipeCard({ clickedDrink }) {
   };
 
   return (
-    <Paper elevation={5} >
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        title={clickedDrink.strDrink}
-      />
+    <Paper
+      sx={{
+        width: 350,
+        maxWidth: "100%",
+        borderRadius: "12px",
+        padding: 1.5,
+        boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
+        border: "1px solid #000000;",
+      }}
+      elevation={5}
+    >
       <CardMedia
-        component="img"
-        height="194"
-        src={clickedDrink.strDrinkThumb}
+        sx={{
+          borderRadius: "6px",
+          width: "100%",
+          height: 0,
+          paddingBottom: "min(75%, 240px)",
+          backgroundColor: "rgba(0,0,0,0.08)",
+          border: "1px solid #000000;",
+        }}
+        image={clickedDrink.strDrinkThumb}
         alt="Drink"
       />
       <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {clickedDrink.strDrink}
+        </Typography>
         <TableContainer component={Paper}>
           <Box display="flex" alignitems="center">
             <PeopleAltIcon fontSize="large" />

@@ -9,8 +9,19 @@ import Paper from "@mui/material/Paper";
 
 export default function ListCard({ loadedRecipes, onClick }) {
   return (
-    <Paper square={false} elevation={5}>
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <Paper
+      sx={{
+        width: 350,
+        maxWidth: "100%",
+        borderRadius: "12px",
+        padding: 1.5,
+        boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
+        border: "1px solid #000000;",
+      }}
+      square={false}
+      elevation={5}
+    >
+      <List sx={{ width: "100%", maxWidth: 300, bgcolor: "background.paper" }}>
         {loadedRecipes.map((recipe) => (
           <li key={recipe.idDrink}>
             <ListItemButton
