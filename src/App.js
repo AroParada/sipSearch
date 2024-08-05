@@ -118,7 +118,7 @@ function App() {
             <SearchBar ref={drinkRef} />
             <Button
               onClick={handleSearchDrink}
-              variant="contained"
+              variant="outlined"
               endIcon={<SearchIcon />}
             >
               Search
