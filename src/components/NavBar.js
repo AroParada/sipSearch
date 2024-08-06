@@ -44,6 +44,10 @@ export default function NavBar({ onClick }) {
     setAnchorEl(null);
   };
 
+  const handleFormClick = (event) => {
+    event.stopPropagation();
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
   return (
@@ -73,7 +77,9 @@ export default function NavBar({ onClick }) {
             Bevvy
           </Typography>
           {/* <LiquorIcon fontSize="large" /> */}
-          <Box sx={{ display: { xs: "none", sm: "block" }, alignItems:'right' }}>
+          <Box
+            sx={{ display: { xs: "none", sm: "block" }, alignItems: "right" }}
+          >
             <AddRecipeForm />
           </Box>
           <div>
@@ -143,7 +149,9 @@ export default function NavBar({ onClick }) {
             <Typography variant="h6" sx={{ my: 2 }}>
               Bevvy
             </Typography>
-            <AddRecipeForm />
+            <Box onClick={handleFormClick}>
+              <AddRecipeForm />
+            </Box>
           </Box>
           <Button aria-describedby={id} variant="h5" onClick={handleClick}>
             Bookmarks
@@ -172,7 +180,13 @@ export default function NavBar({ onClick }) {
               {favorites.map((favorite) => (
                 <li key={favorite}>
                   <ListItemButton
-                    onClick={(e) => onClick(e, favorite)}
+                    onClick={(e) => {
+                      // CLEAN
+                      onClick(e, favorite);
+                      onClick(e, favorite);
+                      handleDrawerToggle();
+                      handleClose();
+                    }}
                     alignItems="flex-start"
                   >
                     <ListItemText primary={favorite} />
