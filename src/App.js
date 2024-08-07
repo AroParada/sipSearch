@@ -9,6 +9,7 @@ import SearchBar from "./components/SearchBar";
 import RecipeCard from "./components/RecipeCard";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
+import swal from "sweetalert";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
@@ -21,12 +22,7 @@ function App() {
     event.preventDefault();
 
     const enteredDrink = drinkRef.current.value;
-    if (!enteredDrink) {
-      setSearchDrink("");
-      console.log("EMPTYYYYYY");
-    } else {
-      setSearchDrink(enteredDrink);
-    }
+    setSearchDrink(enteredDrink);
   }
   // favorites search function for rendering drinks
   function handleSearchFavDrink(e, name) {
@@ -35,17 +31,24 @@ function App() {
     setSearchDrink(name);
     handleClickedDrink(searchDrink);
   }
+  
   useEffect(() => {
+    if (!searchDrink) {
+      // Do nothing if searchDrink is empty
+      return;
+    }
+
+    let isMounted = true; // flag to track component mount status
+
     async function fetchRecipes() {
       try {
         const response = await fetch(
           `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchDrink}`
         );
         if (!response.ok) {
-          // throw new Error("Network response not ok");
-          console.log("Response not ok");
+          throw new Error(`Response status: ${response.status}`);
         }
-        const added = JSON.parse(localStorage.getItem("added")) || [];
+        const added = JSON.parse(localStorage.getItem("added")) || "[]";
 
         const foundInLocalStorage = added.find(
           (drink) => drink.strDrink.toLowerCase() === searchDrink.toLowerCase()
@@ -53,25 +56,48 @@ function App() {
 
         const resData = await response.json();
 
-        // set loaded recipes from the API response || local storage
-        setLoadedRecipes(
-          foundInLocalStorage
-            ? resData.drinks && resData.drinks.length > 0
-              ? [foundInLocalStorage, ...resData.drinks]
-              : [foundInLocalStorage]
-            : resData.drinks
-        );
+        const drinks = Array.isArray(resData.drinks) ? resData.drinks : [];
+
+        if (drinks.length === 0) {
+          swal({
+            title: "Oops",
+            text: "error",
+            icon: "error",
+            button: "Close",
+          });
+          drinkRef.current.value = "";
+          return;
+        }
+
+        if (isMounted) {
+          // set loaded recipes from the API response || local storage
+          setLoadedRecipes(
+            foundInLocalStorage
+              ? resData.drinks && drinks.length > 0
+                ? [foundInLocalStorage, ...drinks]
+                : [foundInLocalStorage]
+              : drinks
+          );
+        }
       } catch (error) {
         console.error("fetch error", error);
+        if (isMounted) {
+          swal({
+            title: "Oops",
+            text: "There was an error fetching recipes. Please try again later.",
+            icon: "error",
+            button: "Close",
+          });
+        }
       }
     }
 
     fetchRecipes();
-  }, [searchDrink]);
 
-  useEffect(() => {
-    // console.log("loaded recipes", loadedRecipes);
-  }, [loadedRecipes]);
+    return () => {
+      isMounted = false; // Cleanup flag on component unmount
+    };
+  }, [searchDrink]);
 
   // Removes objects with empty or null values
   function getNonEmptyProperties(obj) {

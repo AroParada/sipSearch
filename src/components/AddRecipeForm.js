@@ -69,7 +69,11 @@ export default function AddRecipeForm({handleDrawerToggle}) {
       return updatedAdded;
     });
     handleClose();
-    handleDrawerToggle();
+
+   if (window.innerWidth < 600) {
+     handleDrawerToggle();
+   }
+      
     swal({
       title: "Recipe added",
       icon: "success",
