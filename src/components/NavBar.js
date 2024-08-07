@@ -55,7 +55,8 @@ export default function NavBar({ onClick }) {
       {/* <CssBaseline /> */}
       <AppBar
         style={{
-          background: "linear-gradient(#000 0, #031621 64.2%, #06273a 100%)",
+          background: "",
+          boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
         }}
         position="static"
       >
@@ -150,7 +151,7 @@ export default function NavBar({ onClick }) {
               Bevvy
             </Typography>
             <Box onClick={handleFormClick}>
-              <AddRecipeForm />
+              <AddRecipeForm handleDrawerToggle={handleDrawerToggle}/>
             </Box>
           </Box>
           <Button aria-describedby={id} variant="h5" onClick={handleClick}>

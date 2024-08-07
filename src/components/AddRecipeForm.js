@@ -8,8 +8,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useRef, useState, useEffect } from "react";
 import { Box } from "@mui/material";
+import swal from "sweetalert";
 
-export default function AddRecipeForm() {
+export default function AddRecipeForm({handleDrawerToggle}) {
   const [open, setOpen] = useState(false);
   const [added, setAdded] = useState([]);
 
@@ -68,6 +69,12 @@ export default function AddRecipeForm() {
       return updatedAdded;
     });
     handleClose();
+    handleDrawerToggle();
+    swal({
+      title: "Recipe added",
+      icon: "success",
+      timer: 3000
+    });
   };
 
   const handleClickOpen = () => {
