@@ -21,7 +21,12 @@ function App() {
     event.preventDefault();
 
     const enteredDrink = drinkRef.current.value;
-    setSearchDrink(enteredDrink);
+    if (!enteredDrink) {
+      setSearchDrink("");
+      console.log("EMPTYYYYYY");
+    } else {
+      setSearchDrink(enteredDrink);
+    }
   }
   // favorites search function for rendering drinks
   function handleSearchFavDrink(e, name) {
@@ -56,8 +61,6 @@ function App() {
               : [foundInLocalStorage]
             : resData.drinks
         );
-
-        console.log(loadedRecipes);
       } catch (error) {
         console.error("fetch error", error);
       }
@@ -115,7 +118,7 @@ function App() {
       <Grid container spacing={1} direction="column">
         <Grid item>
           <div style={{ padding: 10 }}>
-            <SearchBar ref={drinkRef} />
+            <SearchBar searchDrink={searchDrink} ref={drinkRef} />
             <Button
               onClick={handleSearchDrink}
               variant="contained"
@@ -126,7 +129,7 @@ function App() {
           </div>
         </Grid>
         <Grid item container spacing={2}>
-          <Grid item xs={12} md={6} >
+          <Grid item xs={12} md={6}>
             {loadedRecipes.length > 0 || null ? (
               <ListCard
                 onClick={handleClickedDrink}
@@ -136,7 +139,7 @@ function App() {
               <CircularProgress />
             )}
           </Grid>
-          <Grid item xs={12} md={6} >
+          <Grid item xs={12} md={6}>
             <RecipeCard clickedDrink={clickedDrink} />
           </Grid>
         </Grid>

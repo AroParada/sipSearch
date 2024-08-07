@@ -1,17 +1,21 @@
 import { TextField } from "@mui/material";
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from "react";
 
-const SearchBar = forwardRef((props, ref) => {
-    return (
+const SearchBar = forwardRef(({ searchDrink, props }, ref) => {
+  return (
+    <>
       <TextField
-        id="outlined-basic fullWidth"
-        label="Enter drink"
+        error={!searchDrink}
+        id="outlined-error-helper-text"
+        helperText={!searchDrink ? "Enter a drink" : ""}
+        label="Search drink"
         variant="outlined"
         fullWidth
         inputRef={ref}
         {...props}
       />
-    );
+    </>
+  );
 });
 
 export default SearchBar;
