@@ -1,23 +1,24 @@
-import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { Popover } from "@mui/material";
-import AddRecipeForm from "./AddRecipeForm";
-import LiquorIcon from "@mui/icons-material/Liquor";
-import { FavoritesContext } from "../store/favorites";
-import { useContext } from "react";
-import { ListItemButton } from "@mui/material";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-import List from "@mui/material/List";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import ListItem from "@mui/material/ListItem";
+import React, { useContext } from "react";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Popover,
+  ListItemButton,
+  ListItemText,
+  Divider,
+  List,
+  Box,
+  CssBaseline,
+  Drawer,
+  IconButton,
+  ListItem,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+
+import AddRecipeForm from "./AddRecipeForm";
+import { FavoritesContext } from "../store/favorites";
 
 const drawerWidth = 220;
 const customWindowFunction = () => window;
@@ -77,7 +78,6 @@ export default function NavBar({ onClick }) {
           >
             Bevvy
           </Typography>
-          {/* <LiquorIcon fontSize="large" /> */}
           <Box
             sx={{ display: { xs: "none", sm: "block" }, alignItems: "right" }}
           >
@@ -151,7 +151,7 @@ export default function NavBar({ onClick }) {
               Bevvy
             </Typography>
             <Box onClick={handleFormClick}>
-              <AddRecipeForm handleDrawerToggle={handleDrawerToggle}/>
+              <AddRecipeForm handleDrawerToggle={handleDrawerToggle} />
             </Box>
           </Box>
           <Button aria-describedby={id} variant="h5" onClick={handleClick}>

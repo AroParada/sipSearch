@@ -1,15 +1,14 @@
-import "./App.css";
 import { useEffect, useState, useRef } from "react";
-import { Container } from "@mui/material";
+import { Container, Grid, Button } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import Grid from "@mui/material/Grid";
+import SearchIcon from "@mui/icons-material/Search";
+import swal from "sweetalert";
+
+import "./App.css";
 import ListCard from "./components/ListCard";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import RecipeCard from "./components/RecipeCard";
-import Button from "@mui/material/Button";
-import SearchIcon from "@mui/icons-material/Search";
-import swal from "sweetalert";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
@@ -32,11 +31,11 @@ function App() {
     handleClickedDrink(searchDrink);
   }
 
-function handleKeyDown(event) {
-  if (event.key === "Enter") {
-    handleSearchDrink(event);
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      handleSearchDrink(event);
+    }
   }
-}
 
   useEffect(() => {
     if (!searchDrink) {

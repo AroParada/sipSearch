@@ -1,11 +1,13 @@
 import * as React from "react";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import { ListItemButton } from "@mui/material";
-import Paper from "@mui/material/Paper";
+import {
+  List,
+  Divider,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  ListItemButton,
+  Paper,
+} from "@mui/material";
 
 export default function ListCard({ loadedRecipes, onClick }) {
   return (

@@ -1,15 +1,17 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import { useRef, useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Box,
+} from "@mui/material";
 import swal from "sweetalert";
 
-export default function AddRecipeForm({handleDrawerToggle}) {
+export default function AddRecipeForm({ handleDrawerToggle }) {
   const [open, setOpen] = useState(false);
   const [added, setAdded] = useState([]);
 
@@ -69,14 +71,14 @@ export default function AddRecipeForm({handleDrawerToggle}) {
     });
     handleClose();
 
-   if (window.innerWidth < 600) {
-     handleDrawerToggle();
-   }
-      
+    if (window.innerWidth < 600) {
+      handleDrawerToggle();
+    }
+
     swal({
       title: "Recipe added",
       icon: "success",
-      timer: 3000
+      timer: 3000,
     });
   };
 

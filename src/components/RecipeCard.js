@@ -1,14 +1,10 @@
 import * as React from "react";
 import { styled, Box } from "@mui/material";
-import { red } from "@mui/material/colors";
 import {
-  Card,
-  CardHeader,
   CardMedia,
   CardContent,
   CardActions,
   Collapse,
-  Avatar,
   IconButton,
   Typography,
   Table,
@@ -54,8 +50,8 @@ export default function RecipeCard({ clickedDrink }) {
   const [expanded, setExpanded] = React.useState(false);
   const [serving, setServing] = React.useState(1);
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
-  const isFavorite = favorites.includes(clickedDrink.strDrink)
-  
+  const isFavorite = favorites.includes(clickedDrink.strDrink);
+
   // Clean later
   const ingredients = [
     {
