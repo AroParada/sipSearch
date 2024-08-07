@@ -132,12 +132,13 @@ function App() {
       const nonEmptyDrinkArray = getNonEmptyProperties(foundDrink);
       // make keys that start with strMeasure values numbers
       //IN PROGRESS ---------------------------
-      // Object.keys(nonEmptyDrinkArray).forEach(key => {
-      //   if(key.startsWith('strMeasure')) {
-      //     nonEmptyDrinkArray[key] = (nonEmptyDrinkArray[key])
-      //   }
-      // });
-      // console.log("Modified properties:", nonEmptyDrinkArray);
+      // if key doesnt have / or . then multiply original value to
+      Object.keys(nonEmptyDrinkArray).forEach(key => {
+        if(key.startsWith('strMeasure')) {
+          nonEmptyDrinkArray[key] = (nonEmptyDrinkArray[key])
+        }
+      });
+      console.log("Modified properties:", nonEmptyDrinkArray);
       setClickedDrink(nonEmptyDrinkArray);
     }
     console.log("clicked drink", clickedDrink);

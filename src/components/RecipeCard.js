@@ -88,17 +88,15 @@ export default function RecipeCard({ clickedDrink }) {
     setExpanded(!expanded);
   };
 
-  const handleAddClick = () => {
-    setServing(serving + 1);
-    const newClickedDrink = { ...clickedDrink };
-    //iNCREMENT SERVING +1
-    // IF VALUE DOESNT CONTAIN '/' THEN MULTIPLY NUMBER BY SERVING
-    // ELSE CALL FUNCTION THAT WOULD MULTIPLY THE FRACTION BY SERVINGS
+  const handleServingChange = (change) => {
+    if (serving > 1 || (serving === 1 && change === 1 )) {
+      setServing(serving + change);
+    } else if(serving === 1 && change === -1) {
+    }
   };
 
-  const handleRemoveClick = () => {
-    setServing(serving - 1);
-  };
+  const handleAddClick = () => handleServingChange(1);
+  const handleRemoveClick = () => handleServingChange(-1);
 
   return (
     <Paper
