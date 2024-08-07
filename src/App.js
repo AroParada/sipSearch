@@ -31,7 +31,13 @@ function App() {
     setSearchDrink(name);
     handleClickedDrink(searchDrink);
   }
-  
+
+function handleKeyDown(event) {
+  if (event.key === "Enter") {
+    handleSearchDrink(event);
+  }
+}
+
   useEffect(() => {
     if (!searchDrink) {
       // Do nothing if searchDrink is empty
@@ -61,7 +67,7 @@ function App() {
         if (drinks.length === 0) {
           swal({
             title: "Oops",
-            text: "error",
+            text: "Can not find recipe",
             icon: "error",
             button: "Close",
           });
@@ -85,7 +91,7 @@ function App() {
           swal({
             title: "Oops",
             text: "There was an error fetching recipes. Please try again later.",
-            icon: "error",
+            icon: "info",
             button: "Close",
           });
         }
@@ -144,7 +150,11 @@ function App() {
       <Grid container spacing={1} direction="column">
         <Grid item>
           <div style={{ padding: 10 }}>
-            <SearchBar searchDrink={searchDrink} ref={drinkRef} />
+            <SearchBar
+              onKeyDown={handleKeyDown}
+              searchDrink={searchDrink}
+              ref={drinkRef}
+            />
             <Button
               onClick={handleSearchDrink}
               variant="contained"

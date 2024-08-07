@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import React, { forwardRef } from "react";
 
-const SearchBar = forwardRef(({ searchDrink, props }, ref) => {
+const SearchBar = forwardRef(({onKeyDown, searchDrink, props }, ref) => {
   return (
     <>
       <TextField
@@ -10,6 +10,7 @@ const SearchBar = forwardRef(({ searchDrink, props }, ref) => {
         helperText={!searchDrink ? "Enter a drink" : ""}
         label="Search drink"
         variant="outlined"
+        onKeyDown={onKeyDown}
         fullWidth
         inputRef={ref}
         {...props}
