@@ -12,7 +12,7 @@ import RecipeCard from "./components/RecipeCard";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
-  const [searchDrink, setSearchDrink] = useState("margarita");
+  const [searchDrink, setSearchDrink] = useState("old fashion");
   const [clickedDrink, setClickedDrink] = useState([{}]);
 
   const drinkRef = useRef();
@@ -51,9 +51,9 @@ function App() {
           `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchDrink}`
         );
         if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const added = JSON.parse(localStorage.getItem("added")) || "[]";
+        const added = JSON.parse(localStorage.getItem("added")) || [];
 
         const foundInLocalStorage = added.find(
           (drink) => drink.strDrink.toLowerCase() === searchDrink.toLowerCase()
@@ -130,15 +130,6 @@ function App() {
 
     if (foundDrink) {
       const nonEmptyDrinkArray = getNonEmptyProperties(foundDrink);
-      // make keys that start with strMeasure values numbers
-      //IN PROGRESS ---------------------------
-      // if key doesnt have / or . then multiply original value to
-      Object.keys(nonEmptyDrinkArray).forEach(key => {
-        if(key.startsWith('strMeasure')) {
-          nonEmptyDrinkArray[key] = (nonEmptyDrinkArray[key])
-        }
-      });
-      console.log("Modified properties:", nonEmptyDrinkArray);
       setClickedDrink(nonEmptyDrinkArray);
     }
     console.log("clicked drink", clickedDrink);

@@ -1,28 +1,29 @@
-import * as React from "react";
-import { styled, Box } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
 import {
-  CardMedia,
-  CardContent,
-  CardActions,
-  Collapse,
-  IconButton,
+  Paper,
+  Box,
   Typography,
   Table,
-  TableBody,
-  TableCell,
-  TableContainer,
   TableHead,
   TableRow,
-  Paper,
+  TableCell,
+  TableBody,
+  TableContainer,
+  CardContent,
+  CardMedia,
+  CardActions,
+  IconButton,
   Fab,
+  Collapse,
 } from "@mui/material";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import { useContext } from "react";
+import { styled } from "@mui/material/styles";
 import { FavoritesContext } from "../store/favorites";
+import IngredientRow from "./IngredientRow";
 
 // Drop down menu
 const ExpandMore = styled((props) => {
@@ -36,67 +37,110 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const IngredientRow = ({ ingredient, measurement }) => (
-  // Put in another file ?
-  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-    <TableCell component="th" scope="row">
-      {ingredient}
-    </TableCell>
-    <TableCell align="right">{measurement}</TableCell>
-  </TableRow>
-);
-
 export default function RecipeCard({ clickedDrink }) {
   const [expanded, setExpanded] = React.useState(false);
   const [serving, setServing] = React.useState(1);
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const isFavorite = favorites.includes(clickedDrink.strDrink);
+  const [updatedDrink, setUpdatedDrink] = React.useState({ clickedDrink });
 
   // Clean later
   const ingredients = [
     {
-      ingredient: clickedDrink.strIngredient1,
-      measurement: clickedDrink.strMeasure1,
+      ingredient: updatedDrink.strIngredient1,
+      measurement: updatedDrink.strMeasure1,
     },
     {
-      ingredient: clickedDrink.strIngredient2,
-      measurement: clickedDrink.strMeasure2,
+      ingredient: updatedDrink.strIngredient2,
+      measurement: updatedDrink.strMeasure2,
     },
     {
-      ingredient: clickedDrink.strIngredient3,
-      measurement: clickedDrink.strMeasure3,
+      ingredient: updatedDrink.strIngredient3,
+      measurement: updatedDrink.strMeasure3,
     },
     {
-      ingredient: clickedDrink.strIngredient4,
-      measurement: clickedDrink.strMeasure4,
+      ingredient: updatedDrink.strIngredient4,
+      measurement: updatedDrink.strMeasure4,
     },
     {
-      ingredient: clickedDrink.strIngredient5,
-      measurement: clickedDrink.strMeasure5,
+      ingredient: updatedDrink.strIngredient5,
+      measurement: updatedDrink.strMeasure5,
     },
     {
-      ingredient: clickedDrink.strIngredient6,
-      measurement: clickedDrink.strMeasure6,
+      ingredient: updatedDrink.strIngredient6,
+      measurement: updatedDrink.strMeasure6,
     },
     {
-      ingredient: clickedDrink.strIngredient7,
-      measurement: clickedDrink.strMeasure7,
+      ingredient: updatedDrink.strIngredient7,
+      measurement: updatedDrink.strMeasure7,
     },
   ];
+
+  // if new clicked drink change updated drink state back to clicked drink
+  useEffect(() => {
+    setUpdatedDrink(clickedDrink);
+    setServing(1);
+  }, [clickedDrink]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const handleServingChange = (change) => {
-    if (serving > 1 || (serving === 1 && change === 1 )) {
-      setServing(serving + change);
-    } else if(serving === 1 && change === -1) {
+    if (serving > 1 || (serving === 1 && change === 1)) {
+      const newServing = serving + change;
+      setServing(newServing);
+      changeServingValue(clickedDrink, newServing);
+    } else if (serving === 1 && change === -1) {
     }
   };
 
   const handleAddClick = () => handleServingChange(1);
   const handleRemoveClick = () => handleServingChange(-1);
+
+  //change ingredients amount based on serving
+  const changeServingValue = (clickedDrink, newServing) => {
+    const updatedDrink = { ...clickedDrink };
+
+    Object.keys(updatedDrink).forEach((key) => {
+      if (
+        // !have / or cl is number
+        key.startsWith("strMeasure") &&
+        !updatedDrink[key].includes("/") &&
+        !updatedDrink[key].includes("cl") &&
+        /\d/.test(updatedDrink[key])
+      ) {
+        const numericValue = parseInt(updatedDrink[key]);
+        const unit = updatedDrink[key].replace(numericValue, "").trim();
+        const newValue = numericValue * newServing;
+        const updatedMeasurementString = `${newValue} ${unit}`;
+
+        updatedDrink[key] = updatedMeasurementString;
+        setUpdatedDrink(updatedDrink);
+      } else if (
+        // has cl
+        key.startsWith("strMeasure") &&
+        updatedDrink[key].includes("cl")
+      ) {
+        const numericValue = parseFloat(updatedDrink[key]);
+        const unit = updatedDrink[key].replace(numericValue, "").trim();
+        console.log("unit: ", unit);
+        const newValue = numericValue * newServing;
+        console.log("newValue: ", newValue);
+        const updatedMeasurementString = `${newValue} ${unit}`;
+
+        updatedDrink[key] = updatedMeasurementString;
+        setUpdatedDrink(updatedDrink);
+      } else if (
+        // has /
+        key.startsWith("strMeasure") &&
+        updatedDrink[key].includes("/")
+      ) {
+        // fraction logic
+      }
+    });
+    console.log("updated drink", updatedDrink);
+  };
 
   return (
     <Paper
