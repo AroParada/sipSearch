@@ -4,6 +4,7 @@ import {
   Toolbar,
   Typography,
   Button,
+  Paper,
   Popover,
   ListItemButton,
   ListItemText,
@@ -106,25 +107,31 @@ export default function NavBar({ onClick }) {
                 horizontal: "right",
               }}
             >
-              <List
-                sx={{
-                  width: "100%",
-                  maxWidth: 360,
-                  bgcolor: "background.paper",
-                }}
-              >
-                {favorites.map((favorite) => (
-                  <li key={favorite}>
-                    <ListItemButton
-                      onClick={(e) => onClick(e, favorite)}
-                      alignItems="flex-start"
-                    >
-                      <ListItemText primary={favorite} />
-                    </ListItemButton>
-                    <Divider variant="inset" component="li" />
-                  </li>
-                ))}
-              </List>
+              {favorites.length > 0 ? (
+                <List
+                  sx={{
+                    width: "100%",
+                    maxWidth: 360,
+                    bgcolor: "background.paper",
+                  }}
+                >
+                  {favorites.map((favorite) => (
+                    <li sx={{ p: 2 }} key={favorite}>
+                      <ListItemButton
+                        onClick={(e) => onClick(e, favorite)}
+                        alignItems="flex-start"
+                      >
+                        <ListItemText primary={favorite} />
+                      </ListItemButton>
+                      <Divider variant="inset" component="li" />
+                    </li>
+                  ))}
+                </List>
+              ) : (
+                <Paper>
+                  <Typography sx={{ p: 2 }}>no bookmarks for now</Typography>
+                </Paper>
+              )}
             </Popover>
           </div>
         </Toolbar>
@@ -171,31 +178,36 @@ export default function NavBar({ onClick }) {
               horizontal: "right",
             }}
           >
-            <List
-              sx={{
-                width: "100%",
-                maxWidth: 360,
-                bgcolor: "background.paper",
-              }}
-            >
-              {favorites.map((favorite) => (
-                <li key={favorite}>
-                  <ListItemButton
-                    onClick={(e) => {
-                      // CLEAN
-                      onClick(e, favorite);
-                      onClick(e, favorite);
-                      handleDrawerToggle();
-                      handleClose();
-                    }}
-                    alignItems="flex-start"
-                  >
-                    <ListItemText primary={favorite} />
-                  </ListItemButton>
-                  <Divider variant="inset" component="li" />
-                </li>
-              ))}
-            </List>
+            {favorites.length > 0 ? (
+              <List
+                sx={{
+                  width: "100%",
+                  maxWidth: 360,
+                  bgcolor: "background.paper",
+                }}
+              >
+                {favorites.map((favorite) => (
+                  <li sx={{ p: 2 }} key={favorite}>
+                    <ListItemButton
+                      onClick={(e) => {
+                        onClick(e, favorite);
+                        onClick(e, favorite);
+                        handleDrawerToggle();
+                        handleClose();
+                      }}
+                      alignItems="flex-start"
+                    >
+                      <ListItemText primary={favorite} />
+                    </ListItemButton>
+                    <Divider variant="inset" component="li" />
+                  </li>
+                ))}
+              </List>
+            ) : (
+              <Paper>
+                <Typography sx={{ p: 2 }}>no bookmarks for now</Typography>
+              </Paper>
+            )}
           </Popover>
         </Drawer>
       </nav>
