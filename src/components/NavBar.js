@@ -17,6 +17,7 @@ import {
   ListItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import "../App.css";
 
 import AddRecipeForm from "./AddRecipeForm";
 import { FavoritesContext } from "../store/favorites";
@@ -53,14 +54,14 @@ export default function NavBar({ onClick }) {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
   return (
-    <Box sx={{ display: "flex" }}>
-      {/* <CssBaseline /> */}
+    <>
       <AppBar
-        style={{
+        sx={{
+          position: "sticky",
           background: "",
           boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
         }}
-        position="static"
+        className="navbar"
       >
         <Toolbar>
           <IconButton
@@ -211,6 +212,6 @@ export default function NavBar({ onClick }) {
           </Popover>
         </Drawer>
       </nav>
-    </Box>
+    </>
   );
 }

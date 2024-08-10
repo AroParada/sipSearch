@@ -12,7 +12,7 @@ import RecipeCard from "./components/RecipeCard";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
-  const [searchDrink, setSearchDrink] = useState("old fashion");
+  const [searchDrink, setSearchDrink] = useState("martini");
   const [clickedDrink, setClickedDrink] = useState([{}]);
 
   const drinkRef = useRef();
@@ -136,42 +136,58 @@ function App() {
   }
 
   return (
-    <Container maxWidth="1">
+    <>
       <NavBar onClick={handleSearchFavDrink} />
-      <Grid container spacing={1} direction="column">
-        <Grid item>
-          <div style={{ padding: 10 }}>
-            <SearchBar
-              onKeyDown={handleKeyDown}
-              searchDrink={searchDrink}
-              ref={drinkRef}
-            />
-            <Button
-              onClick={handleSearchDrink}
-              variant="contained"
-              endIcon={<SearchIcon />}
-            >
-              Search
-            </Button>
-          </div>
-        </Grid>
-        <Grid item container spacing={2}>
-          <Grid item xs={12} md={6}>
-            {loadedRecipes.length > 0 || null ? (
-              <ListCard
-                onClick={handleClickedDrink}
-                loadedRecipes={loadedRecipes}
+      <Container maxWidth="1">
+        <Grid container spacing={1} direction="column">
+          <Grid item display="flex" justifyContent="center" alignItems="center">
+            <div style={{ padding: 15 }}>
+              <SearchBar
+                onKeyDown={handleKeyDown}
+                searchDrink={searchDrink}
+                ref={drinkRef}
               />
-            ) : (
-              <CircularProgress />
-            )}
+              <Button
+                onClick={handleSearchDrink}
+                variant="contained"
+                endIcon={<SearchIcon />}
+              >
+                Search
+              </Button>
+            </div>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <RecipeCard clickedDrink={clickedDrink} />
+          <Grid item container spacing={2}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              display="flex"
+              justifyContent="center"
+              alignItems="flex-start"
+            >
+              {loadedRecipes.length > 0 || null ? (
+                <ListCard
+                  onClick={handleClickedDrink}
+                  loadedRecipes={loadedRecipes}
+                />
+              ) : (
+                <CircularProgress />
+              )}
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              display="flex"
+              justifyContent="center"
+              alignItems="flex-start"
+            >
+              <RecipeCard clickedDrink={clickedDrink} />
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 }
 

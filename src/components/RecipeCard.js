@@ -100,46 +100,44 @@ export default function RecipeCard({ clickedDrink }) {
 
   //change ingredients amount based on serving
   const changeServingValue = (clickedDrink, newServing) => {
-    const updatedDrink = { ...clickedDrink };
+    const newUpdatedDrink = { ...clickedDrink };
 
-    Object.keys(updatedDrink).forEach((key) => {
+    Object.keys(newUpdatedDrink).forEach((key) => {
       if (
-        // !have / or cl is number
+        // doesnt have / or cl is number
         key.startsWith("strMeasure") &&
-        !updatedDrink[key].includes("/") &&
-        !updatedDrink[key].includes("cl") &&
-        /\d/.test(updatedDrink[key])
+        !newUpdatedDrink[key].includes("/") &&
+        !newUpdatedDrink[key].includes("cl") &&
+        /\d/.test(newUpdatedDrink[key])
       ) {
-        const numericValue = parseInt(updatedDrink[key]);
-        const unit = updatedDrink[key].replace(numericValue, "").trim();
+        const numericValue = parseInt(newUpdatedDrink[key]);
+        const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
         const newValue = numericValue * newServing;
         const updatedMeasurementString = `${newValue} ${unit}`;
 
-        updatedDrink[key] = updatedMeasurementString;
-        setUpdatedDrink(updatedDrink);
+        newUpdatedDrink[key] = updatedMeasurementString;
+        setUpdatedDrink(newUpdatedDrink);
       } else if (
         // has cl
         key.startsWith("strMeasure") &&
-        updatedDrink[key].includes("cl")
+        newUpdatedDrink[key].includes("cl")
       ) {
-        const numericValue = parseFloat(updatedDrink[key]);
-        const unit = updatedDrink[key].replace(numericValue, "").trim();
-        console.log("unit: ", unit);
+        const numericValue = parseFloat(newUpdatedDrink[key]);
+        const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
         const newValue = numericValue * newServing;
-        console.log("newValue: ", newValue);
         const updatedMeasurementString = `${newValue} ${unit}`;
 
-        updatedDrink[key] = updatedMeasurementString;
-        setUpdatedDrink(updatedDrink);
+        newUpdatedDrink[key] = updatedMeasurementString;
+        setUpdatedDrink(newUpdatedDrink);
       } else if (
         // has /
         key.startsWith("strMeasure") &&
-        updatedDrink[key].includes("/")
+        newUpdatedDrink[key].includes("/")
       ) {
         // fraction logic
       }
     });
-    console.log("updated drink", updatedDrink);
+    console.log("updated drink", newUpdatedDrink);
   };
 
   return (
