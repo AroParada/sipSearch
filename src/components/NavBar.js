@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import "../App.css";
+import shakeStirImg from "../assets/Shake&stir (3).png";
 
 import AddRecipeForm from "./AddRecipeForm";
 import { FavoritesContext } from "../store/favorites";
@@ -73,19 +74,47 @@ export default function NavBar({ onClick }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "flex", md: "flex" },
+              alignItems: "right",
+            }}
           >
-            SHAKE&STIR
-          </Typography>
+            <img
+              textAlign="center"
+              sx={{
+                mr: 2,
+                display: { xs: "flex", sm: "none", md: "none" },
+                flexGrow: 1,
+              }}
+              alt="logo"
+              src={shakeStirImg}
+            />
+          </Box>
           <Box
             sx={{ display: { xs: "none", sm: "block" }, alignItems: "right" }}
           >
             <AddRecipeForm />
           </Box>
           <div>
+            <Box
+              sx={{
+                display: { xs: "flex", sm: "none", md: "none" },
+                alignItems: "right",
+              }}
+            >
+              <img
+                textAlign="center"
+                sx={{
+                  mr: 2,
+                  display: { xs: "flex", sm: "none", md: "none" },
+                  flexGrow: 1,
+                }}
+                alt="logo"
+                src={shakeStirImg}
+              />
+            </Box>
             <Button
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
               aria-describedby={id}
