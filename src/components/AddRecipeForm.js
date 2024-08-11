@@ -100,7 +100,6 @@ export default function AddRecipeForm({ handleDrawerToggle }) {
           <DialogTitle>Recipe Data</DialogTitle>
           <DialogContent>
             <TextField
-              autoFocus
               required
               margin="dense"
               id="name"

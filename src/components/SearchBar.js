@@ -10,7 +10,7 @@ const SearchBar = forwardRef(({onKeyDown, searchDrink, props }, ref) => {
         id="outlined-error-helper-text"
         helperText={!searchDrink ? "Enter a drink" : ""}
         label="Search drink"
-        variant="outlined"
+        variant="standard"
         onKeyDown={onKeyDown}
         inputRef={ref}
         {...props}
