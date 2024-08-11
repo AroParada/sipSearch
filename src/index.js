@@ -4,14 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { FavoritesProvider } from "./store/favorites";
+import theme from './Theme'
+import { ThemeProvider } from "@emotion/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <FavoritesProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </FavoritesProvider>
+  <ThemeProvider theme={theme}>
+    <FavoritesProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </FavoritesProvider>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

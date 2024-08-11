@@ -78,7 +78,7 @@ export default function NavBar({ onClick }) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Bevvy
+            SHAKE&STIR
           </Typography>
           <Box
             sx={{ display: { xs: "none", sm: "block" }, alignItems: "right" }}
@@ -156,7 +156,7 @@ export default function NavBar({ onClick }) {
         >
           <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
             <Typography variant="h6" sx={{ my: 2 }}>
-              Bevvy
+              SHAKE&STIR
             </Typography>
             <Box onClick={handleFormClick}>
               <AddRecipeForm handleDrawerToggle={handleDrawerToggle} />
