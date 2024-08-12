@@ -11,14 +11,12 @@ import {
   Divider,
   List,
   Box,
-  CssBaseline,
   Drawer,
   IconButton,
-  ListItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import "../App.css";
-import shakeStirImg from "../assets/Shake&stir (3).png";
+import logo from "../assets/Screenshot (19).png";
 
 import AddRecipeForm from "./AddRecipeForm";
 import { FavoritesContext } from "../store/favorites";
@@ -78,18 +76,17 @@ export default function NavBar({ onClick }) {
             sx={{
               flexGrow: 1,
               display: { xs: "none", sm: "flex", md: "flex" },
-              alignItems: "right",
+              alignItems: "center",
             }}
           >
             <img
-              textAlign="center"
-              sx={{
-                mr: 2,
-                display: { xs: "flex", sm: "none", md: "none" },
-                flexGrow: 1,
-              }}
               alt="logo"
-              src={shakeStirImg}
+              src={logo}
+              style={{
+                maxWidth: "20%", // Ensures the image scales properly
+                height: "auto", // Maintains aspect ratio
+                marginRight: "16px", // Equivalent to mr: 2 in Material-UI spacing
+              }}
             />
           </Box>
           <Box
@@ -101,18 +98,19 @@ export default function NavBar({ onClick }) {
             <Box
               sx={{
                 display: { xs: "flex", sm: "none", md: "none" },
-                alignItems: "right",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <img
-                textAlign="center"
-                sx={{
-                  mr: 2,
-                  display: { xs: "flex", sm: "none", md: "none" },
-                  flexGrow: 1,
-                }}
                 alt="logo"
-                src={shakeStirImg}
+                src={logo}
+                style={{
+                  maxWidth: "55%", // Ensures the image scales properly
+                  height: "auto", // Maintains aspect ratio
+                  marginRight: "50px", // Equivalent to mr: 2 in Material-UI spacing
+                  textAlign: "center",
+                }}
               />
             </Box>
             <Button
