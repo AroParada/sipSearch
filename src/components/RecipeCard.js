@@ -21,21 +21,9 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { styled } from "@mui/material/styles";
 import { FavoritesContext } from "../store/favorites";
 import IngredientRow from "./IngredientRow";
-
-// Drop down menu
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import ExpandMore from "./ExpandMore";
 
 export default function RecipeCard({ clickedDrink }) {
   const [expanded, setExpanded] = React.useState(false);
