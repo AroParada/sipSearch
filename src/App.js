@@ -9,6 +9,7 @@ import ListCard from "./components/ListCard";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import RecipeCard from "./components/RecipeCard";
+import Slider from "./components/Slider";
 
 function App() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
