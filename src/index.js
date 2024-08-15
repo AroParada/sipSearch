@@ -6,16 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { FavoritesProvider } from "./store/favorites";
 import theme from "./Theme";
 import { ThemeProvider } from "@emotion/react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider theme={theme}>
     <FavoritesProvider>
       <React.StrictMode>
-        <BrowserRouter>
+        <Router>
           <App />
-        </BrowserRouter>
+        </Router>
       </React.StrictMode>
     </FavoritesProvider>
   </ThemeProvider>
