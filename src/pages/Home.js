@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HomeNavBar from "../components/HomeNavBar";
 import Slider from "../components/Slider";
-import { Grid, Box, Typography } from "@mui/material";
+import { Button, Grid, Box, Typography } from "@mui/material";
 import FeatureCard from "../components/FeatureCard";
 
 function Home() {
@@ -11,41 +11,44 @@ function Home() {
     <>
       <HomeNavBar />
       <Box padding="40px" textAlign="center">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h4" component="div">
           What will you have today?
         </Typography>
-        <Typography>
-          Simple and fast drink search application for anyone
-        </Typography>
-        <button>
-          <Link to="/"> Start</Link>
-        </button>
+        <Typography>Simple and fast cocktail guide for anyone</Typography>
+        <Button>
+          <Link to="/Search"> Start</Link>
+        </Button>
       </Box>
       <Slider />
+      <Box padding="40px" textAlign="center">
+        <Typography variant="h5" component="div">
+          Features
+        </Typography>
+      </Box>
       <Box padding="40px">
         <Grid container spacing={1}>
           <Grid item xs={12} md={3}>
             <FeatureCard
-              title="Speed Search"
-              description="sadfa as asdf as a sdfa as fasd a asdf a a sa "
+              title="Speedy Search"
+              description="Fast search results without having to scroll through essays "
             />
           </Grid>
           <Grid item xs={12} md={3}>
             <FeatureCard
               title="Save Favorites"
-              description="sadfa as asdf as a sdfa as fasd a asdf a a sa "
+              description="Bookmark your favorite or new recipes to make later"
             />
           </Grid>
           <Grid item xs={12} md={3}>
             <FeatureCard
               title="Add own Recipes"
-              description="sadfa as asdf as a sdfa as fasd a asdf a a sa "
+              description="Save your one of a kind recipes to the local storage"
             />
           </Grid>
           <Grid item xs={12} md={3}>
             <FeatureCard
               title="Change Servings"
-              description="sadfa as asdf as a sdfa as fasd a asdf a a sa "
+              description="Adjust serving amounts to get exact measurements for more guest"
             />
           </Grid>
         </Grid>
