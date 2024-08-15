@@ -4,15 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { FavoritesProvider } from "./store/favorites";
-import theme from './Theme'
+import theme from "./Theme";
 import { ThemeProvider } from "@emotion/react";
+import { HashRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider theme={theme}>
     <FavoritesProvider>
       <React.StrictMode>
-        <App />
+        <HashRouter>
+          <App />
+        </HashRouter>
       </React.StrictMode>
     </FavoritesProvider>
   </ThemeProvider>
