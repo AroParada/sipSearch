@@ -24,12 +24,26 @@ export default function Slider() {
     <>
       <Swiper
         direction="horizontal"
-        slidesPerView={5}
+        slidesPerView={2}
         spaceBetween={30}
         mousewheel={true}
         freeMode={true}
         pagination={{
           clickable: true,
+        }}
+        breakpoints={{
+          600: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
         }}
         modules={[Mousewheel, FreeMode, Pagination]}
         className="mySwiper"
