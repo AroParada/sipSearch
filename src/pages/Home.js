@@ -15,13 +15,18 @@ function Home() {
           What will you have today?
         </Typography>
         <Typography>Simple and fast cocktail guide for anyone</Typography>
-        <Button>
-          <Link to="/Search"> Start</Link>
+        <Button
+          component={Link}
+          to="/Search"
+          variant="contained"
+          color="primary"
+        >
+          Start
         </Button>
       </Box>
       <Slider />
       <Box padding="40px" textAlign="center">
-        <Typography variant="h5" component="div">
+        <Typography variant="h4" component="div">
           Features
         </Typography>
       </Box>

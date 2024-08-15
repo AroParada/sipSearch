@@ -67,7 +67,7 @@ function Search() {
         if (drinks.length === 0) {
           swal({
             title: "Oops",
-            text: "Can not find recipe",
+            text: "Can not find recipe. Retry or add your own",
             icon: "error",
             button: "Close",
           });
