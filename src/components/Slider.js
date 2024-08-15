@@ -10,30 +10,48 @@ import "swiper/css/pagination";
 import "../App.css";
 
 // import required modules
-import { FreeMode, Pagination } from "swiper/modules";
+import { Mousewheel, FreeMode, Pagination } from "swiper/modules";
+
+import margarita from "../assets/margarita.jpg";
+import martini from "../assets/martini.jpg";
+import mojito from "../assets/mojito.jpg";
+import oldFashion from "../assets/oldfashion.jpg";
+import watermelonMarg from "../assets/watermelon margarita.jpg";
+import whiskeySour from "../assets/whiskey sour.jpg";
 
 export default function Slider() {
   return (
     <>
       <Swiper
-        slidesPerView={3}
+        direction="horizontal"
+        slidesPerView={5}
         spaceBetween={30}
+        mousewheel={true}
         freeMode={true}
         pagination={{
           clickable: true,
         }}
-        modules={[FreeMode, Pagination]}
+        modules={[Mousewheel, FreeMode, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide>
+          <img src={margarita} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={martini} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={mojito} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={oldFashion} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={watermelonMarg} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={whiskeySour} />
+        </SwiperSlide>
       </Swiper>
     </>
   );

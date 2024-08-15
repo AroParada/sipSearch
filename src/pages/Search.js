@@ -11,9 +11,9 @@ import SearchBar from "../components/SearchBar";
 import RecipeCard from "../components/RecipeCard";
 // import Slider from "./components/Slider";
 
-function App() {
+function Search() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
-  const [searchDrink, setSearchDrink] = useState("martini");
+  const [searchDrink, setSearchDrink] = useState("old");
   const [clickedDrink, setClickedDrink] = useState([{}]);
 
   const drinkRef = useRef();
@@ -192,4 +192,4 @@ function App() {
   );
 }
 
-export default App;
+export default Search;

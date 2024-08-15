@@ -1,15 +1,20 @@
+// button to go to the search page
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Search from "../pages/Search";
+import { Link } from 'react-router-dom';
+import HomeNavBar from "../components/HomeNavBar";
+import Slider from "../components/Slider";
 
-function App() {
+function Home() {
   return (
-    <Router>
-      <Routes>
-        <Route path="search" element={<Search />} />
-      </Routes>
-    </Router>
+    <>
+      <HomeNavBar />
+      <Slider />
+      <button>
+        <Link to="/"> Search</Link>
+      </button>
+      
+    </>
   );
 }
 
-export default App;
+export default Home;
