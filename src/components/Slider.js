@@ -49,22 +49,22 @@ export default function Slider() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img alt="drink" src={oldFashion} />
+          <img style={{ borderRadius: "5px" }} alt="drink" src={oldFashion} />
         </SwiperSlide>
         <SwiperSlide>
-          <img alt="drink" src={mojito} />
+          <img style={{ borderRadius: "5px" }} alt="drink" src={mojito} />
         </SwiperSlide>
         <SwiperSlide>
-          <img alt="drink" src={margarita} />
+          <img style={{ borderRadius: "5px" }} alt="drink" src={margarita} />
         </SwiperSlide>
         <SwiperSlide>
-          <img alt="drink" src={martini} />
+          <img style={{ borderRadius: "5px" }} alt="drink" src={martini} />
         </SwiperSlide>
         <SwiperSlide>
-          <img alt="drink" src={watermelonMarg} />
+          <img style={{borderRadius: "5px"}} alt="drink" src={watermelonMarg} />
         </SwiperSlide>
         <SwiperSlide>
-          <img alt="drink" src={whiskeySour} />
+          <img style={{borderRadius: "5px"}} alt="drink" src={whiskeySour} />
         </SwiperSlide>
       </Swiper>
     </>

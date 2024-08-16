@@ -5,16 +5,20 @@ import HomeNavBar from "../components/HomeNavBar";
 import Slider from "../components/Slider";
 import { Button, Grid, Box, Typography } from "@mui/material";
 import FeatureCard from "../components/FeatureCard";
+import Banner from "../components/Banner";
 
 function Home() {
   return (
     <>
       <HomeNavBar />
+      <Banner />
       <Box padding="40px" textAlign="center">
         <Typography gutterBottom variant="h4" component="div">
           What will you have today?
         </Typography>
-        <Typography>Simple and fast cocktail guide for anyone</Typography>
+        <Typography gutterBottom>
+          Simple and fast cocktail guide for anyone
+        </Typography>
         <Button
           component={Link}
           to="/Search"
