@@ -1,22 +1,23 @@
 {
   "files": {
     "main.css": "/sipSearch/static/css/main.2e6d8dd6.css",
-    "main.js": "/sipSearch/static/js/main.3607dc67.js",
+    "main.js": "/sipSearch/static/js/main.7fe70470.js",
     "static/js/453.d1928c6a.chunk.js": "/sipSearch/static/js/453.d1928c6a.chunk.js",
     "static/media/oldfashion.jpg": "/sipSearch/static/media/oldfashion.713750637d5cd184d3af.jpg",
     "static/media/watermelon margarita.jpg": "/sipSearch/static/media/watermelon margarita.4bccfd14dcb2a9b51960.jpg",
     "static/media/martini.jpg": "/sipSearch/static/media/martini.8ff2a88024ace1e547ad.jpg",
+    "static/media/bannerImg.jpg": "/sipSearch/static/media/bannerImg.c3fe582c8a5260814e8f.jpg",
     "static/media/margarita.jpg": "/sipSearch/static/media/margarita.ffe8c1214d89b526846f.jpg",
     "static/media/mojito.jpg": "/sipSearch/static/media/mojito.9d44d2da07da6745ee88.jpg",
     "static/media/whiskey sour.jpg": "/sipSearch/static/media/whiskey sour.cf03963ac76e60f5497a.jpg",
     "static/media/Screenshot (19).png": "/sipSearch/static/media/Screenshot (19).cdde328c61dfb3fd128c.png",
     "index.html": "/sipSearch/index.html",
     "main.2e6d8dd6.css.map": "/sipSearch/static/css/main.2e6d8dd6.css.map",
-    "main.3607dc67.js.map": "/sipSearch/static/js/main.3607dc67.js.map",
+    "main.7fe70470.js.map": "/sipSearch/static/js/main.7fe70470.js.map",
     "453.d1928c6a.chunk.js.map": "/sipSearch/static/js/453.d1928c6a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2e6d8dd6.css",
-    "static/js/main.3607dc67.js"
+    "static/js/main.7fe70470.js"
   ]
 }
