@@ -108,25 +108,26 @@ function Search() {
   // Removes objects with empty or null values
   function getNonEmptyProperties(obj) {
     // Retrieves all keys from the object.
-    return (
-      Object.keys(obj)
-        // Filters out keys where the value is null, undefined, or an empty string
-        .filter(
-          (key) =>
-            obj[key] !== null && obj[key] !== undefined && obj[key] !== ""
-        )
-        //Constructs a new object with only the keys that passed the filter.
-        .reduce((result, key) => {
-          result[key] = obj[key];
-          return result;
-          //}, {}) is the part of the syntax that initializes the accumulator and completes the function.
-        }, {})
-    );
+    const keys = Object.keys(obj)
+      // Filters out keys where the value is null, undefined, or an empty string
+      .filter(
+        (key) => obj[key] !== null && obj[key] !== undefined && obj[key] !== ""
+      );
+
+    const result = {};
+    keys.map((key) => {
+      //adds new property to result object
+      result[key] = obj[key];
+      return key;
+    });
+
+    // now contains only the keys and values from original 'obj' that passed filter
+    return result;
   }
 
   // function for single click drink
   function handleClickedDrink(name) {
-    // Understand this
+    //
     const foundDrink = loadedRecipes.find((recipe) => recipe.strDrink === name);
 
     if (foundDrink) {
