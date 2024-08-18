@@ -185,6 +185,7 @@ export default function NavBar({ onClick }) {
             <Typography variant="h6" sx={{ my: 2 }}>
               SHAKE&STIR
             </Typography>
+            <Divider  />
             <Box onClick={handleFormClick}>
               <AddRecipeForm handleDrawerToggle={handleDrawerToggle} />
             </Box>

@@ -223,12 +223,12 @@ export default function RecipeCard({ clickedDrink }) {
           aria-expanded={expanded}
           aria-label="show more"
         >
+          <Typography component="div">Method</Typography>
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
           <Typography variant="body2" color="text.secondary">
             {clickedDrink.strInstructions}
           </Typography>
