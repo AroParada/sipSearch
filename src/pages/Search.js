@@ -56,15 +56,16 @@ function Search() {
         }
         const added = JSON.parse(localStorage.getItem("added")) || [];
 
-        const foundInLocalStorage = added.find(
-          (drink) => drink.strDrink.toLowerCase() === searchDrink.toLowerCase()
+        // filters through the 'added' to find items that include word in the 'searchDrink' state
+        const foundInLocalStorage = added.filter((drink) =>
+          drink.strDrink.toLowerCase().includes(searchDrink.toLowerCase())
         );
 
         const resData = await response.json();
 
         const drinks = Array.isArray(resData.drinks) ? resData.drinks : [];
 
-        if (drinks.length === 0) {
+        if (drinks.length === 0 && !foundInLocalStorage) {
           swal({
             title: "Oops",
             text: "Can not find recipe. Retry or add your own",
@@ -80,8 +81,8 @@ function Search() {
           setLoadedRecipes(
             foundInLocalStorage
               ? resData.drinks && drinks.length > 0
-                ? [foundInLocalStorage, ...drinks]
-                : [foundInLocalStorage]
+                ? [...foundInLocalStorage, ...drinks]
+                : [...foundInLocalStorage]
               : drinks
           );
         }
