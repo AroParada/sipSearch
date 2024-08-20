@@ -65,7 +65,7 @@ function Search() {
 
         const drinks = Array.isArray(resData.drinks) ? resData.drinks : [];
 
-        if (drinks.length === 0 && !foundInLocalStorage) {
+        if (drinks.length === 0 || !foundInLocalStorage) {
           swal({
             title: "Oops",
             text: "Can not find recipe. Retry or add your own",

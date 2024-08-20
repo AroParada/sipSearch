@@ -146,7 +146,7 @@ export default function RecipeCard({ clickedDrink }) {
               .split("/")
               .map(Number);
             const decimal = numerator / denominator;
-            const newValue = (decimal + intWholeNumber) * newServing;
+            const newValue = (decimal + intWholeNumber).toFixed(1) * newServing;
             newUpdatedDrink[key] = newValue;
             setUpdatedDrink(newUpdatedDrink);
           }
