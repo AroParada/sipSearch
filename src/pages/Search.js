@@ -13,7 +13,7 @@ import { Box } from "@mui/material";
 
 function Search() {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
-  const [searchDrink, setSearchDrink] = useState("old");
+  const [searchDrink, setSearchDrink] = useState("margarita");
   const [clickedDrink, setClickedDrink] = useState([{}]);
 
   const drinkRef = useRef();
@@ -65,7 +65,7 @@ function Search() {
 
         const drinks = Array.isArray(resData.drinks) ? resData.drinks : [];
 
-        if (drinks.length === 0 || !foundInLocalStorage) {
+        if (drinks.length === 0 && foundInLocalStorage.length === 0) {
           swal({
             title: "Oops",
             text: "Can not find recipe. Retry or add your own",
