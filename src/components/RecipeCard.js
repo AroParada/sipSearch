@@ -121,19 +121,34 @@ export default function RecipeCard({ clickedDrink }) {
           newUpdatedDrink[key].includes("/")
         ) {
           const fractionArray = newUpdatedDrink[key].trim().split(" ");
-          console.log("fractionArray: ", fractionArray);
           if (fractionArray.length <= 2) {
             const [numerator, denominator] = fractionArray[0]
               .split("/")
               .map(Number);
             const decimal = numerator / denominator;
-            const newValue = decimal * newServing;
-            const updatedMeasurementString = `${newValue} ${fractionArray[1]}`;
-            console.log("updatedMeasurementString: ", updatedMeasurementString);
+            const newValue = (decimal * newServing).toFixed(1);
+            const updatedMeasurementString = `${newValue} ${
+              fractionArray[1] || ""
+            }`;
 
             newUpdatedDrink[key] = updatedMeasurementString;
             setUpdatedDrink(newUpdatedDrink);
-          } else if (fractionArray.length = 3) {
+          } else if ((fractionArray.length = 3)) {
+            const fractionInArray = fractionArray.filter((number) =>
+              number.includes("/")
+            );
+            const wholeNumberInArray = fractionArray.filter(
+              (number) => !isNaN(number)
+            );
+            const intWholeNumber =
+              wholeNumberInArray.length > 0 ? parseInt(wholeNumberInArray) : 0;
+            const [numerator, denominator] = fractionInArray[0]
+              .split("/")
+              .map(Number);
+            const decimal = numerator / denominator;
+            const newValue = (decimal + intWholeNumber) * newServing;
+            newUpdatedDrink[key] = newValue;
+            setUpdatedDrink(newUpdatedDrink);
           }
         }
       }
