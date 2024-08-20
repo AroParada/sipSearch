@@ -91,41 +91,53 @@ export default function RecipeCard({ clickedDrink }) {
     const newUpdatedDrink = { ...clickedDrink };
 
     Object.keys(newUpdatedDrink).forEach((key) => {
-      if (
-        // doesnt have / or cl is number
-        key.startsWith("strMeasure") &&
-        !newUpdatedDrink[key].includes("/") &&
-        !newUpdatedDrink[key].includes("cl") &&
-        /\d/.test(newUpdatedDrink[key])
-      ) {
-        const numericValue = parseInt(newUpdatedDrink[key]);
-        const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
-        const newValue = numericValue * newServing;
-        const updatedMeasurementString = `${newValue} ${unit}`;
+      if (key.startsWith("strMeasure")) {
+        if (
+          // doesnt have / or cl has a number
+          !newUpdatedDrink[key].includes("/") &&
+          !newUpdatedDrink[key].includes("cl") &&
+          /\d/.test(newUpdatedDrink[key])
+        ) {
+          const numericValue = parseInt(newUpdatedDrink[key]);
+          const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
+          const newValue = numericValue * newServing;
+          const updatedMeasurementString = `${newValue} ${unit}`;
 
-        newUpdatedDrink[key] = updatedMeasurementString;
-        setUpdatedDrink(newUpdatedDrink);
-      } else if (
-        // has cl
-        key.startsWith("strMeasure") &&
-        newUpdatedDrink[key].includes("cl")
-      ) {
-        const numericValue = parseFloat(newUpdatedDrink[key]);
-        const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
-        const newValue = numericValue * newServing;
-        const updatedMeasurementString = `${newValue} ${unit}`;
+          newUpdatedDrink[key] = updatedMeasurementString;
+          setUpdatedDrink(newUpdatedDrink);
+        } else if (
+          // has cl
+          newUpdatedDrink[key].includes("cl")
+        ) {
+          const numericValue = parseFloat(newUpdatedDrink[key]);
+          const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
+          const newValue = numericValue * newServing;
+          const updatedMeasurementString = `${newValue} ${unit}`;
 
-        newUpdatedDrink[key] = updatedMeasurementString;
-        setUpdatedDrink(newUpdatedDrink);
-      } else if (
-        // has /
-        key.startsWith("strMeasure") &&
-        newUpdatedDrink[key].includes("/")
-      ) {
-        // fraction logic
+          newUpdatedDrink[key] = updatedMeasurementString;
+          setUpdatedDrink(newUpdatedDrink);
+        } else if (
+          // has /
+          newUpdatedDrink[key].includes("/")
+        ) {
+          const fractionArray = newUpdatedDrink[key].trim().split(" ");
+          console.log("fractionArray: ", fractionArray);
+          if (fractionArray.length <= 2) {
+            const [numerator, denominator] = fractionArray[0]
+              .split("/")
+              .map(Number);
+            const decimal = numerator / denominator;
+            const newValue = decimal * newServing;
+            const updatedMeasurementString = `${newValue} ${fractionArray[1]}`;
+            console.log("updatedMeasurementString: ", updatedMeasurementString);
+
+            newUpdatedDrink[key] = updatedMeasurementString;
+            setUpdatedDrink(newUpdatedDrink);
+          } else if (fractionArray.length = 3) {
+          }
+        }
       }
     });
-    console.log("updated drink", newUpdatedDrink);
   };
 
   return (
