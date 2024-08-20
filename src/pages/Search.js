@@ -78,13 +78,7 @@ function Search() {
 
         if (isMounted) {
           // set loaded recipes from the API response || local storage
-          setLoadedRecipes(
-            foundInLocalStorage
-              ? resData.drinks && drinks.length > 0
-                ? [...foundInLocalStorage, ...drinks]
-                : [...foundInLocalStorage]
-              : drinks
-          );
+          setLoadedRecipes([...foundInLocalStorage, ...drinks]);
         }
       } catch (error) {
         console.error("fetch error", error);
