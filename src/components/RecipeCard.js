@@ -121,11 +121,14 @@ export default function RecipeCard({ clickedDrink }) {
           newUpdatedDrink[key].includes("/")
         ) {
           const fractionArray = newUpdatedDrink[key].trim().split(" ");
+
+          const convertFractionToDecimal = (fraction) => {
+            const [numerator, denominator] = fraction.split("/").map(Number);
+            return numerator / denominator;
+          };
+
           if (fractionArray.length <= 2) {
-            const [numerator, denominator] = fractionArray[0]
-              .split("/")
-              .map(Number);
-            const decimal = numerator / denominator;
+            const decimal = convertFractionToDecimal(fractionArray[0]);
             const newValue = (decimal * newServing).toFixed(1);
             const updatedMeasurementString = `${newValue} ${
               fractionArray[1] || ""
@@ -133,7 +136,7 @@ export default function RecipeCard({ clickedDrink }) {
 
             newUpdatedDrink[key] = updatedMeasurementString;
             setUpdatedDrink(newUpdatedDrink);
-          } else if ((fractionArray.length = 3)) {
+          } else if (fractionArray.length >= 3) {
             const fractionInArray = fractionArray.filter((number) =>
               number.includes("/")
             );
@@ -142,10 +145,7 @@ export default function RecipeCard({ clickedDrink }) {
             );
             const intWholeNumber =
               wholeNumberInArray.length > 0 ? parseInt(wholeNumberInArray) : 0;
-            const [numerator, denominator] = fractionInArray[0]
-              .split("/")
-              .map(Number);
-            const decimal = numerator / denominator;
+            const decimal = convertFractionToDecimal(fractionInArray[0]);
             const newValue = (decimal + intWholeNumber).toFixed(1) * newServing;
             newUpdatedDrink[key] = newValue;
             setUpdatedDrink(newUpdatedDrink);
