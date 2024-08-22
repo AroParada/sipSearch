@@ -35,26 +35,26 @@ function Home() {
         </Typography>
       </Box>
       <Box padding="40px">
-        <Grid container spacing={1}>
-          <Grid item xs={12} md={3}>
+        <Grid container spacing={3} justifyContent="center">
+          <Grid item xs={12} sm={6} md={3}>
             <FeatureCard
               title="Speedy Search"
               description="Fast search results without having to scroll through essays "
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <FeatureCard
               title="Save Favorites"
               description="Bookmark your favorite or new recipes to make later"
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <FeatureCard
               title="Add own Recipes"
               description="Save your one of a kind recipes to the local storage"
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <FeatureCard
               title="Change Servings"
               description="Adjust serving amounts to get exact measurements for more guest"
