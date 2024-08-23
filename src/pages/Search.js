@@ -11,10 +11,13 @@ import SearchBar from "../components/SearchBar";
 import RecipeCard from "../components/RecipeCard";
 import { Box } from "@mui/material";
 
-function Search() {
+import { fetchAllCocktails } from "../services/cocktailService";
+
+function Search({ id }) {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
   const [searchDrink, setSearchDrink] = useState("margarita");
   const [clickedDrink, setClickedDrink] = useState([{}]);
+  const [dbCocktails, setDbCocktails] = useState([]);
 
   const drinkRef = useRef();
   // SearchBar search function
@@ -22,8 +25,14 @@ function Search() {
     event.preventDefault();
 
     const enteredDrink = drinkRef.current.value;
-    setSearchDrink(enteredDrink);
+    if (enteredDrink === "bcn") {
+      getCocktails();
+    } else {
+      setSearchDrink(enteredDrink);
+      console.log(searchDrink);
+    }
   }
+
   // favorites search function for rendering drinks
   function handleSearchFavDrink(e, name) {
     e.preventDefault();
@@ -131,6 +140,17 @@ function Search() {
     }
     console.log("clicked drink", clickedDrink);
   }
+
+  const getCocktails = async () => {
+    try {
+      const data = await fetchAllCocktails();
+      console.log("data: ", data);
+      setDbCocktails(data);
+      setLoadedRecipes(data);
+    } catch (error) {
+      console.error("Error fetching cocktails:", error);
+    }
+  };
 
   return (
     <>
