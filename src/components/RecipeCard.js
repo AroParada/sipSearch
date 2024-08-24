@@ -95,7 +95,6 @@ export default function RecipeCard({ clickedDrink }) {
         if (
           // doesnt have / or cl has a number
           !newUpdatedDrink[key].includes("/") &&
-          !newUpdatedDrink[key].includes("oz") &&
           !newUpdatedDrink[key].includes("cl") &&
           /\d/.test(newUpdatedDrink[key])
         ) {
@@ -108,8 +107,7 @@ export default function RecipeCard({ clickedDrink }) {
           setUpdatedDrink(newUpdatedDrink);
         } else if (
           // has cl
-          newUpdatedDrink[key].includes("cl") ||
-          newUpdatedDrink[key].includes("oz")
+          newUpdatedDrink[key].includes("cl")
         ) {
           const numericValue = parseFloat(newUpdatedDrink[key]);
           const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
