@@ -23,7 +23,7 @@ export default function ListCard({ loadedRecipes, onClick }) {
       square={false}
       elevation={5}
     >
-      <List sx={{ width: "100%", maxWidth: 300, bgcolor: "background.paper" }}>
+      <List sx={{ width: "100%", maxWidth: 350, bgcolor: "background.paper" }}>
         {loadedRecipes.map((recipe) => (
           <li key={recipe.idDrink}>
             <ListItemButton
