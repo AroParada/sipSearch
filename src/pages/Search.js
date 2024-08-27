@@ -11,7 +11,7 @@ import SearchBar from "../components/SearchBar";
 import RecipeCard from "../components/RecipeCard";
 import { Box } from "@mui/material";
 
-import { fetchAllCocktails } from "../services/cocktailService";
+import { fetchAllCocktails, fetchCocktail } from "../services/cocktailService";
 
 function Search({ id }) {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
@@ -26,7 +26,7 @@ function Search({ id }) {
 
     const enteredDrink = drinkRef.current.value;
     if (enteredDrink === "bcn") {
-      getCocktails();
+      getAllCocktails();
     } else {
       setSearchDrink(enteredDrink);
       console.log(searchDrink);
@@ -78,7 +78,6 @@ function Search({ id }) {
         const resData = await response.json();
 
         const drinks = Array.isArray(resData.drinks) ? resData.drinks : [];
-        console.log("drinks: ", drinks);
 
         if (drinks.length === 0 && foundInLocalStorage.length === 0) {
           swal({
@@ -146,16 +145,26 @@ function Search({ id }) {
   }
 
   // DynamoDB
-  const getCocktails = async () => {
+  const getAllCocktails = async () => {
     try {
       const data = await fetchAllCocktails();
-      console.log("data: ", data);
       setDbCocktails(data);
       setLoadedRecipes(data);
     } catch (error) {
       console.error("Error fetching cocktails:", error);
     }
   };
+
+  const getCocktail = async () => {
+    try {
+      const data = await fetchCocktail();
+      console.log("single data: ", data);
+    } catch (error) {
+      console.error("error fetching cocktails:", error);
+    }
+  };
+
+  getCocktail();
 
   return (
     <>

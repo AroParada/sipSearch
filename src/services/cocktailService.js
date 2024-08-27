@@ -16,10 +16,27 @@ export const fetchAllCocktails = async () => {
 
   try {
     const data = await docClient.scan(params).promise();
-    console.log('data: ', data);
     return data.Items;
   } catch (error) {
     console.error("Error fetching cocktail:", error);
+    throw error;
+  }
+};
+
+export const fetchCocktail = async () => {
+  const params = {
+    TableName: "bcnCocktails",
+    Key: {
+      strDrink: "whiskey root",
+    },
+  };
+
+  try {
+    const data = await docClient.get(params).promise();
+    console.log("data: ", data);
+    return data.Item;
+  } catch (error) {
+    console.log("error fetching cocktail:", error);
     throw error;
   }
 };
