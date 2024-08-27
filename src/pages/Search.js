@@ -78,6 +78,7 @@ function Search({ id }) {
         const resData = await response.json();
 
         const drinks = Array.isArray(resData.drinks) ? resData.drinks : [];
+        console.log("drinks: ", drinks);
 
         if (drinks.length === 0 && foundInLocalStorage.length === 0) {
           swal({
@@ -144,6 +145,7 @@ function Search({ id }) {
     }
   }
 
+  // DynamoDB
   const getCocktails = async () => {
     try {
       const data = await fetchAllCocktails();

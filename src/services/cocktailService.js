@@ -16,6 +16,7 @@ export const fetchAllCocktails = async () => {
 
   try {
     const data = await docClient.scan(params).promise();
+    console.log('data: ', data);
     return data.Items;
   } catch (error) {
     console.error("Error fetching cocktail:", error);

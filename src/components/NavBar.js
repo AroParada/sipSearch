@@ -17,6 +17,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import "../App.css";
 import logo from "../assets/Screenshot (19).png";
+import { Link } from "react-router-dom";
 
 import AddRecipeForm from "./AddRecipeForm";
 import { FavoritesContext } from "../store/favorites";
@@ -73,6 +74,8 @@ export default function NavBar({ onClick }) {
             <MenuIcon />
           </IconButton>
           <Box
+            component={Link}
+            to="/"
             sx={{
               flexGrow: 1,
               display: { xs: "none", sm: "flex", md: "flex" },
@@ -185,7 +188,7 @@ export default function NavBar({ onClick }) {
             <Typography variant="h6" sx={{ my: 2 }}>
               SHAKE&STIR
             </Typography>
-            <Divider  />
+            <Divider />
             <Box onClick={handleFormClick}>
               <AddRecipeForm handleDrawerToggle={handleDrawerToggle} />
             </Box>

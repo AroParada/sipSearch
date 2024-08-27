@@ -1,23 +1,24 @@
 // UNDERSTAND
 
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from "react";
 
 export const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
-//e
+  //e
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
   }, []);
+  console.log(favorites);
 
   const toggleFavorite = (recipeId) => {
-    setFavorites(prevFavorites => {
+    setFavorites((prevFavorites) => {
       const updatedFavorites = prevFavorites.includes(recipeId)
-        ? prevFavorites.filter(id => id !== recipeId)
+        ? prevFavorites.filter((id) => id !== recipeId)
         : [...prevFavorites, recipeId];
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       return updatedFavorites;
     });
   };
@@ -28,4 +29,3 @@ export const FavoritesProvider = ({ children }) => {
     </FavoritesContext.Provider>
   );
 };
-
