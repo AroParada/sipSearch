@@ -11,7 +11,6 @@ export const FavoritesProvider = ({ children }) => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
   }, []);
-  console.log(favorites);
 
   const toggleFavorite = (recipeId) => {
     setFavorites((prevFavorites) => {

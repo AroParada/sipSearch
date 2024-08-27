@@ -29,7 +29,6 @@ function Search({ id }) {
       getAllCocktails();
     } else {
       setSearchDrink(enteredDrink);
-      console.log(searchDrink);
     }
   }
 
@@ -79,7 +78,19 @@ function Search({ id }) {
 
         const drinks = Array.isArray(resData.drinks) ? resData.drinks : [];
 
-        if (drinks.length === 0 && foundInLocalStorage.length === 0) {
+        let dbDrink = [];
+        try {
+          const result = await getCocktail(searchDrink);
+          dbDrink = result;
+        } catch (error) {
+          console.error("error fetching from DB: ", error);
+        }
+
+        if (
+          drinks.length === 0 &&
+          foundInLocalStorage.length === 0 &&
+          dbDrink.length === 0
+        ) {
           swal({
             title: "Oops",
             text: "Can not find recipe. Retry or add your own",
@@ -90,8 +101,10 @@ function Search({ id }) {
           return;
         }
 
-        if (isMounted) {
+        if (isMounted && dbDrink.length !== 0) {
           // set loaded recipes from the API response || local storage
+          setLoadedRecipes([...foundInLocalStorage, ...drinks, dbDrink]);
+        } else if (isMounted) {
           setLoadedRecipes([...foundInLocalStorage, ...drinks]);
         }
       } catch (error) {
@@ -155,16 +168,19 @@ function Search({ id }) {
     }
   };
 
-  const getCocktail = async () => {
+  const getCocktail = async (drink) => {
     try {
-      const data = await fetchCocktail();
-      console.log("single data: ", data);
+      const data = await fetchCocktail(drink);
+      if (data) {
+        console.log("data: ", data);
+        return data; // Return the fetched data
+      } else {
+        return []; // Return an empty array if data is undefined or null
+      }
     } catch (error) {
       console.error("error fetching cocktails:", error);
     }
   };
-
-  getCocktail();
 
   return (
     <>
