@@ -38,15 +38,20 @@ function Search({ id }) {
     e.preventDefault();
 
     setSearchDrink(name);
-    handleClickedDrink(searchDrink);
   }
 
+  useEffect(() => {
+    handleClickedDrink(searchDrink);
+  }, [loadedRecipes]);
+
+  // enter button press
   function handleKeyDown(event) {
     if (event.key === "Enter") {
       handleSearchDrink(event);
     }
   }
 
+  // API call
   useEffect(() => {
     if (!searchDrink) {
       // Do nothing if searchDrink is empty
@@ -131,14 +136,12 @@ function Search({ id }) {
 
   // function for single click drink
   function handleClickedDrink(name) {
-    //
     const foundDrink = loadedRecipes.find((recipe) => recipe.strDrink === name);
 
     if (foundDrink) {
       const nonEmptyDrinkArray = getNonEmptyProperties(foundDrink);
       setClickedDrink(nonEmptyDrinkArray);
     }
-    console.log("clicked drink", clickedDrink);
   }
 
   const getCocktails = async () => {

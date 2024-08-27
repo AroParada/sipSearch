@@ -166,6 +166,7 @@ export default function RecipeCard({ clickedDrink }) {
         border: "1px solid #000000;",
       }}
       elevation={5}
+      square={false}
     >
       <CardMedia
         sx={{
