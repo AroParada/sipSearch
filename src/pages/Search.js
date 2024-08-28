@@ -101,7 +101,7 @@ function Search({ id }) {
           return;
         }
 
-        if (isMounted && dbDrink``.length !== 0) {
+        if (isMounted && dbDrink.length !== 0) {
           // set loaded recipes from the API response || local storage
           setLoadedRecipes([...foundInLocalStorage, ...drinks, dbDrink]);
         } else if (isMounted) {
