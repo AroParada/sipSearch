@@ -101,7 +101,7 @@ function Search({ id }) {
           return;
         }
 
-        if (isMounted && dbDrink.length !== 0) {
+        if (isMounted && dbDrink``.length !== 0) {
           // set loaded recipes from the API response || local storage
           setLoadedRecipes([...foundInLocalStorage, ...drinks, dbDrink]);
         } else if (isMounted) {
@@ -172,7 +172,6 @@ function Search({ id }) {
     try {
       const data = await fetchCocktail(drink);
       if (data) {
-        console.log("data: ", data);
         return data; // Return the fetched data
       } else {
         return []; // Return an empty array if data is undefined or null
