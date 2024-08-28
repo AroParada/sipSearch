@@ -24,7 +24,7 @@ function Search({ id }) {
   function handleSearchDrink(event) {
     event.preventDefault();
 
-    const enteredDrink = drinkRef.current.value;
+    const enteredDrink = drinkRef.current.value.toLowerCase();
     if (enteredDrink === "bcn") {
       getAllCocktails();
     } else {
