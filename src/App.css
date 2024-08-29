@@ -78,3 +78,9 @@ html {
   height: 100%;
   object-fit: cover;
 }
+
+.colorButton {
+  background-color: white !important;
+  color: black !important ;
+  border: 1px solid #000000 !important;
+}

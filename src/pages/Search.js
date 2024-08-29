@@ -195,6 +195,7 @@ function Search({ id }) {
               />
               <Button
                 onClick={handleSearchDrink}
+                className="colorButton"
                 variant="contained"
                 endIcon={<SearchIcon />}
               >

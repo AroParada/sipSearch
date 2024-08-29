@@ -20,6 +20,7 @@ function Home() {
           Simple and fast cocktail guide for anyone
         </Typography>
         <Button
+          className="colorButton"
           component={Link}
           to="/Search"
           variant="contained"
