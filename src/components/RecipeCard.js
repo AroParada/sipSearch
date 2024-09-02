@@ -129,7 +129,7 @@ export default function RecipeCard({ clickedDrink }) {
 
           if (fractionArray.length <= 2) {
             const decimal = convertFractionToDecimal(fractionArray[0]);
-            const newValue = (decimal * newServing).toFixed(1);
+            const newValue = (decimal * newServing).toFixed(2);
             const updatedMeasurementString = `${newValue} ${
               fractionArray[1] || ""
             }`;
@@ -146,7 +146,7 @@ export default function RecipeCard({ clickedDrink }) {
             const intWholeNumber =
               wholeNumberInArray.length > 0 ? parseInt(wholeNumberInArray) : 0;
             const decimal = convertFractionToDecimal(fractionInArray[0]);
-            const newValue = (decimal + intWholeNumber).toFixed(1) * newServing;
+            const newValue = (decimal + intWholeNumber).toFixed(2) * newServing;
             newUpdatedDrink[key] = newValue;
             setUpdatedDrink(newUpdatedDrink);
           }
