@@ -24,6 +24,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FavoritesContext } from "../store/favorites";
 import IngredientRow from "./IngredientRow";
 import ExpandMore from "./ExpandMore";
+import { Newspaper } from "@mui/icons-material";
 
 export default function RecipeCard({ clickedDrink }) {
   const [expanded, setExpanded] = React.useState(false);
@@ -96,6 +97,7 @@ export default function RecipeCard({ clickedDrink }) {
           // doesnt have / or cl has a number
           !newUpdatedDrink[key].includes("/") &&
           !newUpdatedDrink[key].includes("cl") &&
+          !newUpdatedDrink[key].includes("-") &&
           /\d/.test(newUpdatedDrink[key])
         ) {
           const numericValue = parseInt(newUpdatedDrink[key]);
@@ -106,8 +108,21 @@ export default function RecipeCard({ clickedDrink }) {
           newUpdatedDrink[key] = updatedMeasurementString;
           setUpdatedDrink(newUpdatedDrink);
         } else if (
+          // has -
+          newUpdatedDrink[key].includes("-")
+        ) {
+          const valueArray = newUpdatedDrink[key].trim().split(" ");
+          const unit = valueArray[1];
+          const hypenArray = valueArray[0].trim().split("-");
+
+          const firstNewValue = hypenArray[0] * newServing;
+          const secondNewValue = hypenArray[1] * newServing;
+          const updatedMeasurementString = `${firstNewValue}-${secondNewValue} ${unit}`;
+          newUpdatedDrink[key] = updatedMeasurementString;
+          setUpdatedDrink(newUpdatedDrink);
+        } else if (
           // has cl
-          newUpdatedDrink[key].includes("cl")
+          newUpdatedDrink[key].includes("cL")
         ) {
           const numericValue = parseFloat(newUpdatedDrink[key]);
           const unit = newUpdatedDrink[key].replace(numericValue, "").trim();

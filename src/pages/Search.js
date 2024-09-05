@@ -105,7 +105,7 @@ function Search({ id }) {
           // set loaded recipes from the API response || local storage
           setLoadedRecipes([...foundInLocalStorage, ...drinks, dbDrink]);
         } else if (isMounted) {
-          setLoadedRecipes([...foundInLocalStorage, ...drinks]);
+          setLoadedRecipes([...foundInLocalStorage, ...drinks]); // might have to revist to check
         }
       } catch (error) {
         console.error("fetch error", error);
