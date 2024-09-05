@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sipSearch/static/css/main.b260d8dd.css",
-    "main.js": "/sipSearch/static/js/main.3fdc7c90.js",
+    "main.js": "/sipSearch/static/js/main.bca084bc.js",
     "static/js/453.6b265eb6.chunk.js": "/sipSearch/static/js/453.6b265eb6.chunk.js",
     "static/media/oldfashion.jpg": "/sipSearch/static/media/oldfashion.713750637d5cd184d3af.jpg",
     "static/media/watermelon margarita.jpg": "/sipSearch/static/media/watermelon margarita.4bccfd14dcb2a9b51960.jpg",
@@ -13,11 +13,11 @@
     "static/media/Screenshot (19).png": "/sipSearch/static/media/Screenshot (19).cdde328c61dfb3fd128c.png",
     "index.html": "/sipSearch/index.html",
     "main.b260d8dd.css.map": "/sipSearch/static/css/main.b260d8dd.css.map",
-    "main.3fdc7c90.js.map": "/sipSearch/static/js/main.3fdc7c90.js.map",
+    "main.bca084bc.js.map": "/sipSearch/static/js/main.bca084bc.js.map",
     "453.6b265eb6.chunk.js.map": "/sipSearch/static/js/453.6b265eb6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b260d8dd.css",
-    "static/js/main.3fdc7c90.js"
+    "static/js/main.bca084bc.js"
   ]
 }
