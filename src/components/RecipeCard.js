@@ -122,7 +122,8 @@ export default function RecipeCard({ clickedDrink }) {
           setUpdatedDrink(newUpdatedDrink);
         } else if (
           // has cl
-          newUpdatedDrink[key].includes("cL")
+          newUpdatedDrink[key].includes("cL") ||
+          newUpdatedDrink[key].includes("cl")
         ) {
           const numericValue = parseFloat(newUpdatedDrink[key]);
           const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
