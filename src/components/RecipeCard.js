@@ -98,6 +98,7 @@ export default function RecipeCard({ clickedDrink }) {
           !newUpdatedDrink[key].includes("/") &&
           !newUpdatedDrink[key].includes("cl") &&
           !newUpdatedDrink[key].includes("-") &&
+          !newUpdatedDrink[key].includes("or") &&
           /\d/.test(newUpdatedDrink[key])
         ) {
           const numericValue = parseInt(newUpdatedDrink[key]);
@@ -105,6 +106,16 @@ export default function RecipeCard({ clickedDrink }) {
           const newValue = numericValue * newServing;
           const updatedMeasurementString = `${newValue} ${unit}`;
 
+          newUpdatedDrink[key] = updatedMeasurementString;
+          setUpdatedDrink(newUpdatedDrink);
+        } else if (
+          // has or
+          newUpdatedDrink[key].includes("or")
+        ) {
+          const valueArray = newUpdatedDrink[key].trim().split(" ");
+          const firstNewValue = valueArray[0] * newServing;
+          const secondNewValue = valueArray[2] * newServing;
+          const updatedMeasurementString = `${firstNewValue} or ${secondNewValue}`;
           newUpdatedDrink[key] = updatedMeasurementString;
           setUpdatedDrink(newUpdatedDrink);
         } else if (
