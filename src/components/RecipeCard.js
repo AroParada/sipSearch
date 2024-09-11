@@ -101,7 +101,7 @@ export default function RecipeCard({ clickedDrink }) {
           !newUpdatedDrink[key].includes("or") &&
           /\d/.test(newUpdatedDrink[key])
         ) {
-          const numericValue = parseInt(newUpdatedDrink[key]);
+          const numericValue = parseInt(newUpdatedDrink[key].match(/\d+/)[0]);
           const unit = newUpdatedDrink[key].replace(numericValue, "").trim();
           const newValue = numericValue * newServing;
           const updatedMeasurementString = `${newValue} ${unit}`;
