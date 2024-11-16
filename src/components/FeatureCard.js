@@ -8,7 +8,6 @@ const FeatureCard = ({
   width = "90%", // adjusted to use full width within a container
   maxWidth = "300px", // set a reasonable max width for different screens
   borderRadius = "12px",
-  boxShadow = "0px 14px 80px rgba(34, 35, 58, 0.2)",
   border = "1px solid #000000",
   elevation = 5,
 }) => {
@@ -19,7 +18,6 @@ const FeatureCard = ({
         width,
         maxWidth,
         borderRadius,
-        boxShadow,
         border,
       }}
       elevation={elevation}
